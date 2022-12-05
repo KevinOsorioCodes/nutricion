@@ -1,0 +1,50 @@
+{% extends 'paginaweb/base.html' %}
+{% load manifest %}
+{% load static %}
+{% block content %}
+    {% block extra_css %}  
+    {% endblock extra_css %}
+<div class="col-md-12">
+    <p id="profile_title" class="mb-2 text-blue text-center">Inicio > Administrar solicitudes > Crear solicitud</p>
+    <h2 class='h2 medium'>Crear solicitud</h2>
+    <form method="post" action="{% url 'solicitud_save' %}">{% csrf_token %}
+        <div id="formContent">
+            <div id="content_solicitud_container" class="container container-fluid">
+                <div class="dates-solicitud-container">
+                    <div class="evdate-addsolicitud-container">
+                        <label for="fecha_eval" class="form-label col-form-label-sm">Fecha de evaluación:</label>
+                        <input type="date" class="form-control form-control-sm" min="{{fecha_actual}}" name="fecha_eval" id="fecha_eval" required>
+                    </div>
+                    <div class="solicitud-buttons-container solicitud-buttons-container-center">
+                        <button type="submit" id="solicitud_button" class="button">Guardar</button>
+                        <a href="{% url 'solicitud_list' %}" id="solicitud_button" class="button">Regresar</a>
+                    </div>
+                </div>
+                <div id="checkboxes_solicitud_container" class="checkboxes-container">
+                    <div id="checkboxes-addstudents-container" class="checkboxes-students-container">
+                        <h4>Estudiantes</h4>
+                        <label>Seleccione los estudiantes:</label>
+                        <div class="students-checkboxes">
+                            {% for e in estudiantes %}
+                            <div id="checkboxes-students-list" class="checkbox-students-container">
+                                <input id="student {{e}}" type="checkbox" name="estudiantes" value="{{e.id}}"
+                                {% for es in estudiante %} 
+                                    {% if es == e.id %} 
+                                        checked
+                                    {% endif %} 
+                                {% endfor %}>
+                                <label id="solicitud_label" for="student {{h.id}}">{{e.nombre}} | {{e.rut}}-{{e.dv}}</label>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+                <div class="solicitud-buttons-container solicitud-buttons-container-bottom">
+                    <button type="submit" id="solicitud_button" class="button">Guardar</button>
+                    <a href="{% url 'solicitud_list' %}" id="solicitud_button" class="button">Regresar</a>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}

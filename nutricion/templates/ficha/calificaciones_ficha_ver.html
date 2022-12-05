@@ -1,0 +1,114 @@
+{% extends 'paginaweb/base.html' %}
+{% load manifest %}
+{% load static %}
+{% block content %}
+    {% block extra_css %}  
+    {% endblock extra_css %}
+<div class="col-md-12">
+    <p id="profile_title" class="mb-2 text-blue text-center">Inicio > Calificaciones > Ficha de {{paciente_data.nombre}}</p>
+    <h2 class='h2 medium text-blue'>Ficha de {{paciente_data.nombre}}</h2>
+    <form method="post" action="{% url 'admin_ficha_save' paciente_data.id  %}">{% csrf_token %}
+        <div id="Fichaform">
+            <div class="container-fluid">
+                <h4>Paciente</h4>
+                <div class="col-sm">
+                    <label for="recomendacion" class="form-label col-form-label-sm">Calificación:</label>
+                    <input type="text" step="0.1" class="form-control form-control-sm" name="calificacion" id="calificacion"value="{{calificacion_data.nota}}" disabled>
+                </div>
+                <div class="col-sm">
+                    <label for="recomendacion" class="form-label col-form-label-sm">Comentario del docente:</label>
+                    <input type="text" step="0.1" class="form-control form-control-sm" name="Comentario" id="Comentario"value="{{calificacion_data.comentario}}" disabled>
+                </div>
+                <hr>
+                <div class="row">
+
+                    <div class="col-sm">
+                        <label for="nombre_paciente" class="form-label col-form-label-sm">Nombre completo:</label>
+                        <input type="text" class="form-control form-control-sm" name="nombre_paciente" id="nombre_paciente" placeholder="Nombre" value="{{paciente_data.nombre}}"disabled>
+                        <label for="Email" class="form-label col-form-label-sm">Email:</label>
+                        <input type="email" class="form-control form-control-sm" name="email" id="email" placeholder="@email.com" value="{{paciente_data.email}}" disabled>
+                        <label for="fecha_nac" class="form-label col-form-label-sm">Fecha de nacimiento:</label>
+                        <input type="text" class="form-control form-control-sm" name="" id="fecha_nac" value="{{paciente_data.fecha_nacimiento}}" disabled>
+                    </div>
+                    <div class="col-sm">
+                        <div class="row">
+                            <div class="col-9">
+                                <label for="rut" class="form-label col-form-label-sm">Rut paciente:</label>
+                                <input type="text" class="form-control form-control-sm" name="rut" id="rut" placeholder="12345678" value="{{paciente_data.rut}}" required disabled>
+                            </div>
+                            <div class="col-3">
+                                <label for="dv" class="form-label col-form-label-sm">DV:</label>
+                                <input type="text" class="form-control form-control-sm" name="dv" id="dv" placeholder="K" value="{{paciente_data.dv}}" required disabled>
+                            </div>
+
+                        </div>
+                        <label for="disciplina" class="form-label col-form-label-sm">Disciplina o Deporte:</label>
+                        <input type="text" class="form-control form-control-sm" name="disciplina" id="disciplina" placeholder="Disciplina" value="{{paciente_data.disciplina}}" required disabled>
+                        <label for="genero" class="form-label col-form-label-sm">Género:</label>
+                        <input type="text" class="form-control form-control-sm" name="genero" id="genero" placeholder="Genero" value="{{paciente_data.genero}}" required disabled>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid">
+                <hr>
+                <h4>Detalle atención</h4>
+                <div class="row">
+                    <div class="col-sm">
+                        <label for="estatura" class="form-label col-form-label-sm">Estatura (cm):</label>
+                        <input type="text" class="form-control form-control-sm" name="estatura" id="estatura" value="{{ficha_data.estatura}}"disabled/>
+                        <label for="peso_prom" class="form-label col-form-label-sm">Peso promedio (kg):</label>
+                        <input type="text" step="0.1" class="form-control form-control-sm" name="peso_prom" id="peso_prom" value="{{ficha_data.peso_prom}}" disabled>
+                        <label for="prom_circunferencia_cin" class="form-label col-form-label-sm">Promedio circunferencia cintura (cm):</label>
+                        <input type="text" step="0.1" class="form-control form-control-sm" name="prom_circunferencia_cin" id="prom_circunferencia_cin" value="{{ficha_data.prom_circunferencia_cin}}" disabled>
+                        <label for="prom_circunferencia_braq" class="form-label col-form-label-sm">Promedio circunferencia braquial (cm):</label>
+                        <input type="text" step="0.1" class="form-control form-control-sm" name="prom_circunferencia_braq" id="prom_circunferencia_braq" value="{{ficha_data.prom_circunferencia_braq}}" disabled>
+                        <label for="prom_pliegue_t" class="form-label col-form-label-sm">Promedio pliegue triciptal (PT) (mm):</label>
+                        <input type="text" step="0.1" class="form-control form-control-sm" name="prom_pliegue_t" id="prom_pliegue_t" value="{{ficha_data.prom_pliegue_t}}"  disabled>
+                        <label for="prom_pliegue_b" class="form-label col-form-label-sm">Promedio pliegue biciptal (PB) (mm):</label>
+                        <input type="text" step="0.1" class="form-control form-control-sm" name="prom_pliegue_b" id="prom_pliegue_b"value="{{ficha_data.prom_pliegue_b}}"  disabled>
+                    </div>
+                    <div class="col-sm">
+                        <label for="prom_pliegue_se" class="form-label col-form-label-sm">Promedio pliegue subescapular (PSE) (mm):</label>
+                        <input type="text" step="0.1" class="form-control form-control-sm" name="prom_pliegue_se" id="prom_pliegue_se" value="{{ficha_data.prom_pliegue_se}}" disabled>
+                        <label for="prom_pliegue_si" class="form-label col-form-label-sm">Promedio pliegue suprailíaco (PSI) (mm):</label>
+                        <input type="text" step="0.1" class="form-control form-control-sm" name="prom_pliegue_si" id="prom_pliegue_si" value="{{ficha_data.prom_pliegue_si}}" disabled>
+                        <label for="sum_pliegues" class="form-label col-form-label-sm">Sumatoria de pliegues (mm):</label>
+                        <input type="text" step="0.1" class="form-control form-control-sm" name="sum_pliegues" id="sum_pliegues" value="{{ficha_data.sum_pliegues}}" disabled>
+                        <label for="porc_grasa" class="form-label col-form-label-sm">Porcentaje de grasa (%):</label>
+                        <input type="text" step="0.1" class="form-control form-control-sm" name="porc_grasa" id="porc_grasa"  value="{{ficha_data.porc_grasa}}" disabled>
+                        <label for="diag_nutri" class="form-label col-form-label-sm">Diagnóstico nutricional:</label>
+                        <textarea name="diag_nutri" id="diag_nutri" class="form-control form-control-sm" rows="5" cols="50"  disabled> {{ficha_data.diag_nutri}}</textarea>
+                    </div>
+                </div>
+                <hr>
+                <h4>Opcionales</h4>
+                <div class="row">
+                    <div class="col-sm">
+                        <label for="prom_pliegue_abd" class="form-label col-form-label-sm">Promedio pliegue abdominal (mm):</label>
+                        <input type="text" step="0.1" class="form-control form-control-sm" name="prom_pliegue_abd" id="prom_pliegue_abd" value="{{ficha_data.prom_pliegue_abd}}"disabled>
+                        <label for="prom_pliegue_pant" class="form-label col-form-label-sm">Promedio pliegue pantorilla (mm):</label>
+                        <input type="text" step="0.1" class="form-control form-control-sm" name="prom_pliegue_pant" id="prom_pliegue_pant" value="{{ficha_data.prom_pliegue_pant}}"disabled>
+                    </div>
+                    <div class="col-sm">
+                        <label for="prom_pliegue_media" class="form-label col-form-label-sm">Promedio pliegue medio (mm):</label>
+                        <input type="text" step="0.1" class="form-control form-control-sm" name="prom_pliegue_media" id="prom_pliegue_media" value="{{ficha_data.prom_pliegue_media}}"disabled>
+                        <label for="prom_pliegue_supra" class="form-label col-form-label-sm">Promedio pliegue supraespinal (mm):</label>
+                        <input type="text" step="0.1" class="form-control form-control-sm" name="prom_pliegue_supra" id="prom_pliegue_supra"value="{{ficha_data.prom_pliegue_supra}}" disabled>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm">
+                        <label for="recomendacion" class="form-label col-form-label-sm">Recomendación:</label>
+                        <textarea name="recomendacion" id="recomendacion" class="form-control form-control-sm" rows="5" cols="50" disabled>{{ficha_data.recomendacion}}</textarea>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="ficha-buttons">
+            <div id="form-button">
+                <a href="{% url 'calificacion_ver' %}" id="form-button" class=" button">Regresar</a>
+            </div> 
+        </div>
+    </form>
+</div>
+{% endblock %}

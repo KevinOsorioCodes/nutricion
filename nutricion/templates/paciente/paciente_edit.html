@@ -1,0 +1,106 @@
+{% extends 'paginaweb/base.html' %}
+{% load manifest %}
+{% load static %}
+{% block content %}
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+    {% block extra_css %}  
+    {% endblock extra_css %}
+<div class="col-md-6">
+    <h3 class="mb-2 text-blue text-center">Editar Paciente</h3> 
+    <form method="post" action="{% url 'paciente_update' paciente_data.id %}">{% csrf_token %}
+        <div id="formContent">
+            <label for="nombre" class="form-label col-form-label-sm">Nombre completo:</label>
+            <input type="text" class="form-control form-control-sm" name="nombre" id="nombre" value="{{paciente_data.nombre}}" placeholder="Nombre(s) Apellido(s)" >
+            <label for="email" class="form-label col-form-label-sm">Email paciente:</label>
+            <input type="email" class="form-control form-control-sm" name="email" id="email" value="{{paciente_data.email}}" placeholder="autonoma@correo.com" >
+            
+            <label for="fecha_nacimiento" class="form-label col-form-label-sm">Fecha de nacimiento:</label>
+            <div class="row">
+                <div class="col-5">
+                    <input type="text" class="form-control" name="" id="" value="{{paciente_data.fecha_nacimiento}}"  required disabled>
+                    <div class="feedback body--small normal"></div>
+                </div>
+                <div class="col-3">
+                    <input type="date" class="form-control" name="fecha_nacimiento" id="fecha_nacimiento" value="{{paciente.fecha_nacimiento}}" max="2015-07-12">
+                    <div class="feedback body--small normal"></div>
+                </div>
+            </div>
+            <label for="genero" class="form-label col-form-label-sm">Género paciente:</label>
+            <select class="form-select js-example-placeholder-single" name="genero" id="genero">
+                <option selected>{{paciente_data.genero}}</option>
+                {% if paciente_data.genero == "Masculino" %}
+                    <option>Femenino</option>
+                    <option>Sin especificar</option>
+                {% elif paciente_data.genero == "Femenino" %}
+                    <option>Masculino</option>
+                    <option>Sin especificar</option>
+                {% elif paciente_data.genero == "Sin especificar" %}
+                    <option>Masculino</option>
+                    <option>Femenino</option>    
+                {% else %}
+                    <option>Masculino</option>
+                    <option>Femenino</option>
+                    <option>Sin especificar</option>
+                {% endif %}
+                
+            </select>
+            
+            
+            <div id="checkboxes_solicitud_container" class="checkboxes-container">
+                <div id="checkboxes-students-container" class="checkboxes-students-container">
+                    <label for="students" class="form-label col-form-label-sm">Disciplina o deporte paciente:</label>
+                    <div class="students-checkboxes">
+                        {% for d in disciplina_all %}
+                        <div id="checkboxes-students-list" class="checkbox-students-container">
+                            <input id="disciplina {{d}}" type="checkbox" name="disciplina" value="{{d.id}}"
+                            {% for de in disciplina_data %} 
+                                {% if de == d.id %} 
+                                    checked 
+                                {% endif %} 
+                            {% endfor %}>
+                            <label id="solicitud_label" for="student {{d.id}}">{{d.nombre}}</label>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+            <div id="checkboxes_solicitud_container" class="checkboxes-container">
+                <div id="checkboxes-students-container" class="checkboxes-students-container">
+                    <label for="students" class="form-label col-form-label-sm">Discapacidad paciente:</label>
+                    <div class="students-checkboxes">
+                        {% for d in discapacidad_all %}
+                        <div id="checkboxes-students-list" class="checkbox-students-container">
+                            <input id="discapacidad {{d}}" type="checkbox" name="discapacidad" value="{{d.id}}"
+                            {% for de in discapacidad_data %} 
+                                {% if de == d.id %} 
+                                    checked 
+                                {% endif %} 
+                            {% endfor %}>
+                            <label id="solicitud_label" for="student {{d.id}}">{{d.nombre}}</label>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="d-flex justify-content-center">
+            <button type="submit" class="d-flex justify-content-center button">Guardar</button>
+            <br>
+        </div>
+        
+        <div class="float-end">
+            <a href="{% url 'paciente_list' %}" class="button">Regresar</a>
+        </div> 
+    </form>
+</div>
+<script>
+    $(".js-example-placeholder-single").select2({
+        placeholder: "Seleccione un género o añada uno",
+        allowClear: true,
+        tags:true,
+    });
+</script>
+{% endblock %}

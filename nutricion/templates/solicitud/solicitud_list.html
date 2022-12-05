@@ -1,0 +1,107 @@
+{% extends 'paginaweb/base.html' %}
+{% load static %}
+{% load mathfilters %}
+{% block title %}{% endblock %}
+{% block content %}
+    {% block extra_css %}
+    <style>
+        .page-item :active{
+            color: green;
+        }
+    </style>   
+    {% endblock extra_css %}
+    <div class="col-lg-12">
+        <p id="profile_title" class="mb-2 text-blue text-center">Inicio > Administrar solicitudes</p>
+        <h2 class='h2 medium'>Listado de solicitudes</h2>
+        <div id="users-list" class="d-flex">
+            <form action="" id="search-user-list" method="post" class='input-container-search'>
+                {% csrf_token %}
+                <button id="search-button" class="search-button" type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                <input type="date" min="2022-01-01" name="date_initial" id="user-list2" class='input-container-search'>
+                <div id="a">
+                    <p>Hasta:</p>
+                </div>
+                <input type="date" min="2022-01-01" name="date_final" id="user-list3" class='input-container-search'>
+            </form>
+            <a href="{% url 'solicitud_add' %}" id="add-user" class="button">Crear solicitud</a>
+        </div>
+        <div id="list-container" class="list-container">
+            {% if h_list_array_count != 0 %}
+                {% for h in h_list_paginate %}
+                    <div id="user-card-list" class="card">
+                        <div id="card-allinfo">
+                            <div id="card-userinfo">
+                                <span id="card-user-name">Solicitud N° {{h.id}}</span>
+                                <span id="card-user-email">Ingresada por: {{h.nombre}}</span>
+                                <span id="card-user-email">Fecha de ingreso: {{h.fecha_add}}</span>
+                                <span id="card-user-email">Fecha de evaluación: {{h.fecha_eval}}</span>
+                            </div>
+                        </div>
+                        <div id="user-actions">
+                            <a id="A-icon" href= "{% url 'solicitud_edit' h.id %}" ><i id="E-icon" class="fa-regular fa-pen-to-square tooltip"><span class="tooltiptext">Editar</span></i></a> <a id="A-icon" href= "{% url 'solicitud_delete' h.id %}"><i id="E-icon" class="fa-solid fa-trash tooltip"><span class="tooltiptext">Eliminar</span></i></a>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% else %}
+                <div id="user-card-list" class="card">
+                    <div id="card-allinfo">
+                        <div id="card-userinfo">
+                            <span id="card-user-name">No se encontraron fechas :(</span>
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+            
+            <!-- Paginación -->
+                {% if paginator.num_pages > 1 %}
+                    <div class="d-flex">
+                        <nav aria-label="Page navigation example" class="ms-auto">
+                            <ul class="pagination pagination-table">
+                                {% if h_list_paginate.has_previous %}
+                                    <li class="page-item">
+                                        <a class="page-link" href="?page={{ h_list_paginate.previous_page_number}}&search={{search}}" aria-label="Previous">
+                                            <span aria-hidden="true">&laquo;</span>
+                                        </a>
+                                    </li>
+                                {% else %}
+                                    <li class="page-item disabled">
+                                        <a class="page-link" href="#" tabindex="-1">&laquo;</a>
+                                    </li>                        
+                                {% endif %}
+
+                                {% for i in paginator.page_range %}
+                                    {% if i >= page|sub:2 and page|add:2 >= i %}
+                                        <li class="page-item {% if h_list_paginate.number == i %}active{% endif %}">
+                                            <a class="page-link" href="?page={{ i }}&search={{search}}">{{ i }}</a>
+                                        </li>  
+                                    {% elif h_list_paginate.number == i %}
+                                        <li class="page-item {% if h_list_paginate.number == i %}active{% endif %}">
+                                            <a class="page-link" href="?page={{ i }}&search={{search}}">{{ i }}</a>
+                                        </li>
+                                        {% if h_list_paginate.number == 1 %}
+                                            <li class="page-item {% if h_list_paginate.number == i|add:1 %}{% endif %}">
+                                                <a class="page-link" href="?page={{ i|add:1 }}&search={{search}}">{{ i|add:1 }}</a>
+                                            </li>
+                                        {% endif %}
+                                    {% endif %}
+                                {% endfor %}
+                                
+                                {% if h_list_paginate.has_next %}
+                                    <li class="page-item ">
+                                        <a class="page-link" href="?page={{ h_list_paginate.next_page_number }}&search={{search}}">&raquo;</a>
+                                    </li>
+                                {% else %}
+                                    <li class="page-item disabled">
+                                        <a class="page-link" href="#" tabindex="-1">&raquo;</a>
+                                    </li>
+                                {% endif %}
+                            </ul>
+                        </nav>
+                    </div>
+                {% endif %}  
+            <!-- Paginación -->    
+        </div>
+        <a href="{% url 'home' %}" id="list-return-page" class="button">Regresa</a>
+    {% block extrajs %}    
+    {% endblock extrajs %}    
+{% endblock %}
