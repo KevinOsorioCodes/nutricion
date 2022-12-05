@@ -1,0 +1,270 @@
+{% url 'home' as home %}
+{% url 'coordinador_list' as coordinador_list %}
+{% url 'docente_list' as docente_list %}
+{% url 'estudiante_list' as estudiante_list %}
+{% url 'paciente_list' as paciente_list %}
+{% url 'ficha_list_estudiante' as ficha_list_estudiante %}
+{% url 'ficha_list' as ficha_list %}
+{% url 'calificacion_ver' as calificacion_ver %}
+
+{% load manifest %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <!-- <meta charset="UTF-8"> -->
+        <link rel="icon" type="image/x-icon" href="{% static 'registration/img/Logo-UA.png' %}">
+        <title>UA | Módulo evaluación nutricional</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800;900&display=swap"
+        rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Material+Icons+Outlined" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Material+Icons+Round" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Material+Icons+Sharp" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Material+Icons+Two+Tone" rel="stylesheet">
+        <link href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+        <link href="{% manifest 'styles.scss' %}"rel="stylesheet">
+        <link href="{% static 'css/styles.css' %}" rel="stylesheet">
+        <link href="{% static 'css/index.css' %}" rel="stylesheet">
+        <!---------CDN FONT AWESOME----------->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    </head>
+    <style>
+        .navbar{
+            padding-top: 0rem;
+            padding-bottom: 0rem;
+        }
+        .dash{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        } 
+    </style>
+
+    <body class="w-auto" >
+        <nav id="sidebar" class='side-bar to-left'>
+            <header class='my-xxl-4 my-1 mb-5'>
+                <div id="expand-side-bar" class="float-button closedmenubutton">
+                    <div class="m-auto">
+                        <span id="Icon-display-menu" class="icon"><i class="fa-solid fa-bars"></i></span>
+                    </div>
+                </div>
+                <div id="header-sb" class="sidebar-container">
+                    <img id="LogoUA-sb" class="LogoUA-sb closedLogoUA" src="{% static 'registration/img/Logo-UA.png' %}" width="100%" alt="Logo UA - Universidad Autonoma">
+                    <a id="userinfo-sb" href="{% url 'perfil' %}">
+                        <div id="profile_info_sidebar" class="sidebar-container closedphoto">
+                            <div id="avatar-normal-container-sidebar" class="avatar-normal-container">
+                                <img src="{{profile.foto_perfil.url}}" alt="avatar">
+                            </div>
+                            <div id="user-info-sb" class="user-info-sb closed">
+                                <p>{{user.first_name}}</p>
+                                {% if profile.group_id == 1 %}
+                                    <p id="userinfo-sb">Administrador</p>
+                                {% elif profile.group_id == 2 %}
+                                    <p id="userinfo-sb">Coordinador</p>
+                                {% elif profile.group_id == 3 %}
+                                    <p id="userinfo-sb">Docente</p>
+                                {% elif profile.group_id == 4 %}
+                                    <p id="userinfo-sb">Estudiante</p>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </header>
+            {% if profile.group_id == 1 %}
+            <div class='menu'>
+                <!--=== Menu Inicio ===-->  
+                {% if request.path == home %}
+                    <a href="{% url 'home' %}" id="Menu-options-active" class='item'>
+                {% else %}
+                    <a href="{% url 'home' %}" id="Menu-options" class='item'>
+                {% endif %}
+                    <span id="Icon-menu" class="icon"><i class="fa-solid fa-house"></i></span>
+                    <p id="menu-selecttext-options1" class='body--small menu-selecttext-options closed'>Inicio</p>
+                </a>
+                <!--=== Menu Administrar Coordinadores ===-->  
+                {% if request.path == coordinador_list %}
+                    <a href="{% url 'coordinador_list' %}" id="Menu-options-active" class='item active'>
+                {% else %}
+                    <a href="{% url 'coordinador_list' %}" id="Menu-options" class='item'>
+                {% endif %}
+                    <span id="Icon-menu" class="icon"><i class="fa-solid fa-building-user"></i></span>
+                    <p id="menu-selecttext-options2" class='body--small menu-selecttext-options closed'>Administrar coordinadores</p>
+                </a>
+                <!--=== Menu Administrar Docentes ===-->  
+                {% if request.path == docente_list %}
+                    <a href="{% url 'docente_list' %}" id="Menu-options-active" class='item active'>
+                {% else %}
+                    <a href="{% url 'docente_list' %}" id="Menu-options" class='item'>
+                {% endif %}
+                    <span id="Icon-menu" class="icon"><i class="fa-solid fa-person-chalkboard"></i></span>
+                    <p id="menu-selecttext-options3" class='body--small menu-selecttext-options closed'>Administrar docentes</p>
+                </a>
+                <!--=== Menu Administrar Estudiantes ===-->  
+                {% if request.path == estudiante_list %}
+                    <a href="{% url 'estudiante_list' %}" id="Menu-options-active" class='item active'>
+                {% else %}
+                    <a href="{% url 'estudiante_list' %}" id="Menu-options" class='item'>
+                {% endif %}
+                    <span id="Icon-menu" class="icon"><i class="fa-solid fa-graduation-cap"></i></span>
+                    <p id="menu-selecttext-options4" class='body--small menu-selecttext-options closed'>Administrar estudiantes</p>
+                </a>
+                <!--=== Menu Administrar Pacientes ===-->  
+                {% if request.path == paciente_list %}
+                    <a href="{% url 'paciente_list' %}" id="Menu-options-active" class='item active'>
+                {% else %}
+                    <a href="{% url 'paciente_list' %}" id="Menu-options" class='item'>
+                {% endif %}
+                    <span id="Icon-menu" class="icon"><i class="fa-solid fa-hospital-user"></i></span>
+                    <p id="menu-selecttext-options5" class='body--small menu-selecttext-options closed'>Administrar pacientes</p>
+                </a>
+                <!--=== Menu Administrar solicitudes ===-->  
+                {% if template_name == '' %}
+                    <a href="{% url 'solicitud_list' %}" id="Menu-options-active" class='item active'>
+                {% else %}
+                    <a href="{% url 'solicitud_list' %}" id="Menu-options" class='item'>
+                {% endif %}
+                <span id="Icon-menu" class="icon"><i class="fa-solid fa-file-signature"></i></span>
+                    <p id="menu-selecttext-options6" class='body--small menu-selecttext-options closed'>Administrar solicitudes</p>
+                </a>
+            </div>
+            <script src="{% static 'js/sidebar-admin.js' %}"></script> 
+            {% elif profile.group_id == 2 %}
+            <div class='menu'>
+                <!--=== Menu Inicio ===-->  
+                {% if request.path == home %}
+                    <a href="{% url 'home' %}" id="Menu-options-active" class='item'>
+                {% else %}
+                    <a href="{% url 'home' %}" id="Menu-options" class='item'>
+                {% endif %}
+                    <span id="Icon-menu" class="icon"><i class="fa-solid fa-house"></i></span>
+                    <p id="menu-selecttext-options1" class='body--small menu-selecttext-options closed'>Inicio</p>
+                </a>
+                <!--=== Menu Administrar Docentes ===-->  
+                {% if request.path == docente_list %}
+                    <a href="{% url 'docente_list' %}" id="Menu-options-active" class='item active'>
+                {% else %}
+                    <a href="{% url 'docente_list' %}" id="Menu-options" class='item'>
+                {% endif %}
+                    <span id="Icon-menu" class="icon"><i class="fa-solid fa-person-chalkboard"></i></span>
+                    <p id="menu-selecttext-options3" class='body--small menu-selecttext-options closed'>Administrar docentes</p>
+                </a>
+                <!--=== Menu Administrar Estudiantes ===-->  
+                {% if request.path == estudiante_list %}
+                    <a href="{% url 'estudiante_list' %}" id="Menu-options-active" class='item active'>
+                {% else %}
+                    <a href="{% url 'estudiante_list' %}" id="Menu-options" class='item'>
+                {% endif %}
+                    <span id="Icon-menu" class="icon"><i class="fa-solid fa-graduation-cap"></i></span>
+                    <p id="menu-selecttext-options4" class='body--small menu-selecttext-options closed'>Administrar estudiantes</p>
+                </a>
+                <!--=== Menu Administrar solicitudes ===-->  
+                {% if template_name == '' %}
+                    <a href="{% url 'home' %}" id="Menu-options-active" class='item active'>
+                {% else %}
+                    <a href="{% url 'home' %}" id="Menu-options" class='item'>
+                {% endif %}
+                <span id="Icon-menu" class="icon"><i class="fa-solid fa-file-signature"></i></span>
+                    <p id="menu-selecttext-options6" class='body--small menu-selecttext-options closed'>Administrar solicitudes</p>
+                </a>
+            </div>
+            <script src="{% static 'js/sidebar-coordinador.js' %}"></script> 
+            {% elif profile.group_id == 3 %}
+            <div class='menu'>
+                <!--=== Menu Inicio ===-->  
+                {% if request.path == home %}
+                    <a href="{% url 'home' %}" id="Menu-options-active" class='item'>
+                {% else %}
+                    <a href="{% url 'home' %}" id="Menu-options" class='item'>
+                {% endif %}
+                    <span id="Icon-menu" class="icon"><i class="fa-solid fa-house"></i></span>
+                    <p id="menu-selecttext-options1" class='body--small menu-selecttext-options closed'>Inicio</p>
+                </a>
+                <!--=== Menu Administrar solicitudes ===-->  
+                {% if request.path == solicitud_list %}
+                    <a href="{% url 'solicitud_list' %}" id="Menu-options-active" class='item active'>
+                {% else %}
+                    <a href="{% url 'solicitud_list' %}" id="Menu-options" class='item'>
+                {% endif %}
+                    <span id="Icon-menu" class="icon"><i class="fa-solid fa-file-signature"></i></span>
+                    <p id="menu-selecttext-options6" class='body--small menu-selecttext-options closed'>Administrar solicitudes</p>
+                </a>
+                <!--=== Menu Administrar Pacientes ===-->  
+                {% if request.path == paciente_list %}
+                    <a href="{% url 'paciente_list' %}" id="Menu-options-active" class='item active'>
+                {% else %}
+                    <a href="{% url 'paciente_list' %}" id="Menu-options" class='item'>
+                {% endif %}
+                    <span id="Icon-menu" class="icon"><i class="fa-solid fa-hospital-user"></i></span>
+                    <p id="menu-selecttext-options5" class='body--small menu-selecttext-options closed'>Administrar pacientes</p>
+                </a>
+                <!--=== Menu Fichas Pacientes ===-->  
+                {% if request.path == admin_ficha_estudiante_list1 %}
+                    <a href="{% url 'admin_ficha_estudiante_list1' %}" id="Menu-options-active" class='item active'>
+                {% else %}
+                    <a href="{% url 'admin_ficha_estudiante_list1' %}" id="Menu-options" class='item'>
+                {% endif %}
+                    <span id="Icon-menu" class="icon"><i class="fa-solid fa-book-medical"></i></span>
+                    <p id="menu-selecttext-options8" class='body--small menu-selecttext-options closed'>Fichas de Estudiantes</p>
+                </a>
+            </div>
+            <script src="{% static 'js/sidebar-docente.js' %}"></script> 
+            {% elif profile.group_id == 4 %}
+            <div class='menu'>
+                <!--=== Menu Inicio ===-->  
+                {% if request.path == home %}
+                    <a href="{% url 'home' %}" id="Menu-options-active" class='item'>
+                {% else %}
+                    <a href="{% url 'home' %}" id="Menu-options" class='item'>
+                {% endif %}
+                    <span id="Icon-menu" class="icon"><i class="fa-solid fa-house"></i></span>
+                    <p id="menu-selecttext-options1" class='body--small menu-selecttext-options closed'>Inicio</p>
+                </a>
+                <!--=== Menu Administrar Fichas ===-->  
+                {% if request.path == ficha_list %}
+                    <a href="{% url 'ficha_list' %}" id="Menu-options-active" class='item active'>
+                {% else %}
+                    <a href="{% url 'ficha_list' %}" id="Menu-options" class='item'>
+                {% endif %}
+                    <span id="Icon-menu" class="icon"><i class="fa-solid fa-book-medical"></i></span>
+                    <p id="menu-selecttext-options9" class='body--small menu-selecttext-options closed'>Administrar fichas</p>
+                </a>
+                <!--=== Menu Calificaciones ===--> 
+                {% if request.path == calificacion_ver %}
+                    <a href="{% url 'calificacion_ver' %}" id="Menu-options-active" class='item active'>
+                {% else %}
+                    <a href="{% url 'calificacion_ver' %}" id="Menu-options" class='item'>
+                {% endif %}
+                    <span id="Icon-menu" class="icon"><i class="fa-solid fa-file-signature"></i></span>
+                    <p id="menu-selecttext-optionsc" class='body--small menu-selecttext-options closed'>Calificaciones</p>
+                </a>
+            </div>
+            <script src="{% static 'js/sidebar-estudiante.js' %}"></script> 
+            {% endif %}
+            <div class='side-bar-footer mb-5'>
+                <form id="end-session-sb" method="post" action="{% url 'logout' %}">
+                    {% csrf_token %}
+                    {% if redirect_field_value %}
+                        <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}"/>
+                    {% endif %}       
+                    <button id="end-session-sb-b" class="button closedbutton" type="submit"><span id="Icon-menu" class="icon"><i id="Icon-menu" class="fa-solid fa-right-from-bracket"></i></span><p id="menu-selecttext-options10" class='body--small menu-selecttext-options closed'>Salir</p></button>
+                </form>   
+                <div id="LogoRSU" class="LogoRSU closedLogoRSU">
+                    <img id="LogoRSUW" class="LogoRSUW" src="{% static 'registration/img/LOGO-RSU.png' %}" width="100%" alt="Logo RSU UA - RSU Universidad Autonoma - Responsabilidad social">
+                </div>          
+            </div>
+            
+        </nav>
+        <div id="body_container" class='dashboard-container justify-content-center fullcontainer' style="background: white;">
+            <div class="dash">
+                {% block content %} {% endblock %}  
+            </div>       
+        </div>
+        <script src="{% manifest 'sidebar.js' %}"></script>
+        <script src="{% static 'node_modules/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
+    </body>
+</html>

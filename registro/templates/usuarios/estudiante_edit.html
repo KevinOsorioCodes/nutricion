@@ -1,0 +1,52 @@
+{% extends 'paginaweb/base.html' %}
+{% load static %}
+{% load mathfilters %}
+{% block title %}{% endblock %}
+{% block content %}
+    {% block extra_css %}
+    <style>
+        .page-item :active{
+            color: green;
+        }
+    </style>   
+    {% endblock extra_css %}
+    <div class="col-md-6">
+        <h3 class="mb-2 text-blue text-center">Editar Estudiante</h3>
+        {% if messages %}
+            <ul class="messagelist text-success">{% for message in messages %}<li>{{ message }}</li>{% endfor %}</ul>
+        {% endif %}
+        <form method="post" action="{% url 'estudiante_update' estudiante_data.id %}">
+            {% csrf_token %}
+            
+            <div class="col-12 col-lg-12 row row-cols-1 row-cols-md-1 g-2 p-lg-0-5">
+                <label for="category_description" class="form-label">Estado</label>
+                <div class="col-md-10">
+                    <input type="text" class="form-control col-md-8" name="estado" id="estado" value="{{estudiante_user.is_active}}" placeholder="estado" required disabled>
+                </div>
+                <div class="col-md-2">
+                    <a href="{% url 'estudiante_estado' estudiante_data.id %}" class="btn btn-secondary btn-sm" >Cambiar estado</a>
+                </div>
+                <div class="mb-0 col-md-12">
+                    <label for="category_name" class="form-label">Nombre</label>
+                    <input type="text" class="form-control" name="nombre" id="nombre" value="{{estudiante_data.nombre}}" placeholder="Nombre" required>
+                    <div class="feedback body--small normal"></div>
+                </div>
+                <div class="mb-0 col-md-12">
+                    <label for="category_name" class="form-label">Email</label>
+                    <input type="text" class="form-control" name="email" id="email" value="{{estudiante_data.email}}" placeholder="email" required>
+                    <div class="feedback body--small normal"></div>
+                </div>
+            </div>
+            <div class="d-flex justify-content-center">
+                <button type="submit" class="d-flex justify-content-center button">Editar</button>
+                <br>
+            </div>
+            <div class="float-end">
+                <a href="{% url 'estudiante_list' %}" class="button">Regresa</a>
+            </div>            
+        </form> 
+    </div>
+ 
+    {% block extrajs %}    
+    {% endblock extrajs %}    
+{% endblock %}

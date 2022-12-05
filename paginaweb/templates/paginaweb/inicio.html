@@ -1,0 +1,237 @@
+{% extends 'paginaweb/base.html' %}
+{% load static %}
+{% block title %}{% endblock %}
+{% block content %}
+    {% block extra_css %}
+    <style>
+        .card{
+            border-radius: 1em;
+        }
+
+        .card:hover{
+            background-color: rgb(131, 133, 129);
+            transition: .25s;
+        }
+    </style> 
+    {% endblock extra_css %}
+    {% if profile.group_id == 1 %}
+        <div class="mb-1">
+            <h2 id="home-title" class='h2'>Bienvenido Administrador</h2>
+        </div>
+        <div class="card-group text-center">
+            <h3 id="selection-home-title" class='h3'>¿Qué deseas realizar hoy?</h3>
+            <div id="card-container" class="cards_container">
+                <div id="home-card" class="card">
+                    <a href="{% url 'coordinador_list' %}" id="home-cards-url" class="btn">
+                        <div class="card-tittle">
+                            <span class="material-icons-outlined" style="font-size: 100px;">
+                                <i class="fa-solid fa-building-user"></i>
+                            </span>
+                        </div>
+                        <span>Administrar Coordinadores</span>
+                    </a>
+                </div>
+                <div id="home-card" class="card">
+                    <a href="{% url 'docente_list' %}" id="home-cards-url" class="btn">
+                        <div class="card-tittle">
+                            <span class="material-icons-outlined" style="font-size: 100px;">
+                                <i class="fa-solid fa-person-chalkboard"></i>
+                            </span>
+                        </div>
+                        <span>Administrar Docentes</span>
+                    </a>
+                </div>
+                <div id="home-card" class="card">
+                    <a href="{% url 'estudiante_list' %}" id="home-cards-url" class="btn">
+                        <div class="card-tittle">
+                            <span class="material-icons-outlined" style="font-size: 100px;">
+                                <i class="fa-solid fa-graduation-cap"></i>
+                            </span>
+                        </div>
+                        <span>Administrar Estudiantes</span>
+                    </a>
+                </div>
+                <div id="home-card" class="card">
+                    <a href="{% url 'paciente_list' %}" id="home-cards-url" class="btn">
+                        <div class="card-tittle">
+                            <span class="material-icons-outlined" style="font-size: 100px;">
+                                <i class="fa-solid fa-hospital-user"></i>
+                            </span>
+                        </div>
+                        <span>Administrar Pacientes</span>
+                    </a>
+                </div>
+                <div id="home-card" class="card">
+                    <a href="{% url 'solicitud_list' %}" id="home-cards-url" class="btn">
+                        <div class="card-tittle">
+                            <span class="material-icons-outlined" style="font-size: 100px;">
+                                <i class="fa-solid fa-file-signature"></i>
+                            </span>
+                        </div>
+                        <span>Administrar Solicitudes</span>
+                    </a>
+                </div>
+                <div id="home-card" class="card">
+                    <a href="{% url 'admin_ficha_estudiante_list1' %}" id="home-cards-url" class="btn">
+                        <div class="card-tittle">
+                            <span class="material-icons-outlined" style="font-size: 100px;">
+                                <i class="fa-solid fa-file-signature"></i>
+                            </span>
+                        </div>
+                        <span>Administrar Fichas Estudiantes</span>
+                    </a>
+                </div>
+                <div id="home-card" class="card">
+                    <a href="{% url 'admin_ficha_paciente_list1' %}" id="home-cards-url" class="btn">
+                        <div class="card-tittle">
+                            <span class="material-icons-outlined" style="font-size: 100px;">
+                                <i class="fa-solid fa-file-signature"></i>
+                            </span>
+                        </div>
+                        <span>Administrar Fichas Pacientes</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    {% elif profile.group_id == 2 %}
+        <div class="mb-1">
+            <h2 id="home-title" class='h2'>Bienvenido coordinador {{user.first_name}}</h2>
+        </div>
+        <div class="card-group text-center">
+            <h3 id="selection-home-title" class='h3'>¿Qué deseas realizar hoy?</h3>
+            <div id="card-container" class="cards_container">
+                <div id="home-card" class="card">
+                    <a href="{% url 'docente_list' %}" id="home-cards-url" class="btn">
+                        <div class="card-tittle">
+                            <span class="material-icons-outlined" style="font-size: 100px;">
+                                <i class="fa-solid fa-person-chalkboard"></i>
+                            </span>
+                        </div>
+                        <span>Administrar docentes</span>
+                    </a>
+                </div>
+                <div id="home-card" class="card">
+                    <a href="{% url 'estudiante_list' %}" id="home-cards-url" class="btn">
+                        <div class="card-tittle">
+                            <span class="material-icons-outlined" style="font-size: 100px;">
+                                <i class="fa-solid fa-graduation-cap"></i>
+                            </span>
+                        </div>
+                        <span>Administrar Estudiantes</span>
+                    </a>
+                </div>
+                <div id="home-card" class="card">
+                    <a href="{% url 'paciente_list' %}" id="home-cards-url" class="btn">
+                        <div class="card-tittle">
+                            <span class="material-icons-outlined" style="font-size: 100px;">
+                                <i class="fa-solid fa-hospital-user"></i>
+                            </span>
+                        </div>
+                        <span>Administrar Pacientes</span>
+                    </a>
+                </div>
+                <div id="home-card" class="card">
+                    <a href="{% url 'solicitud_list' %}" id="home-cards-url" class="btn">
+                        <div class="card-tittle">
+                            <span class="material-icons-outlined" style="font-size: 100px;">
+                                <i class="fa-solid fa-file-signature"></i>
+                            </span>
+                        </div>
+                        <span>Administrar Solicitudes</span>
+                    </a>
+                </div>
+                <div id="home-card" class="card">
+                    <a href="{% url 'admin_ficha_estudiante_list1' %}" id="home-cards-url" class="btn">
+                        <div class="card-tittle">
+                            <span class="material-icons-outlined" style="font-size: 100px;">
+                                <i class="fa-solid fa-file-signature"></i>
+                            </span>
+                        </div>
+                        <span>Administrar Fichas Estudiantes</span>
+                    </a>
+                </div>
+                <div id="home-card" class="card">
+                    <a href="{% url 'admin_ficha_paciente_list1' %}" id="home-cards-url" class="btn">
+                        <div class="card-tittle">
+                            <span class="material-icons-outlined" style="font-size: 100px;">
+                                <i class="fa-solid fa-file-signature"></i>
+                            </span>
+                        </div>
+                        <span>Administrar Fichas Pacientes</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    {% elif profile.group_id == 3 %}
+        <div class="mb-1">
+            <h2 id="home-title" class='h2'>Bienvenido Docente {{user.first_name}}</h2>
+        </div>
+        <div class="card-group text-center">
+            <h3 id="selection-home-title" class='h3'>¿Qué deseas realizar hoy?</h3>
+            <div id="card-container" class="cards_container">
+                <div id="home-card" class="card">
+                    <a href="{% url 'solicitud_list' %}" id="home-cards-url" class="btn">
+                        <div class="card-tittle">
+                            <span class="material-icons-outlined" style="font-size: 100px;">
+                                <i class="fa-solid fa-file-signature"></i>
+                            </span>
+                        </div>
+                        <span>Administrar Solicitudes</span>
+                    </a>
+                </div>
+                <div id="home-card" class="card">
+                    <a href="{% url 'paciente_list' %}" id="home-cards-url" class="btn">
+                        <div class="card-tittle">
+                            <span class="material-icons-outlined" style="font-size: 100px;">
+                                <i class="fa-solid fa-hospital-user"></i>
+                            </span>
+                        </div>
+                        <span>Administrar Pacientes</span>
+                    </a>
+                </div>
+                <div id="home-card" class="card">
+                    <a href="{% url 'admin_ficha_estudiante_list1' %}" id="home-cards-url" class="btn">
+                        <div class="card-tittle">
+                            <span class="material-icons-outlined" style="font-size: 100px;">
+                                <i class="fa-solid fa-graduation-cap"></i>
+                            </span>
+                        </div>
+                        <span>Fichas de Estudiantes</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% elif profile.group_id == 4 %}
+        <div class="mb-1">
+            <h2 id="home-title" class='h2'>Bienvenido Estudiante {{user.first_name}}</h2>
+        </div>
+        <div class="card-group text-center">
+            <h3 id="selection-home-title" class='h3'>¿Qué deseas realizar hoy?</h3>
+            <div id="card-container" class="cards_container">
+                <div id="home-card" class="card">
+                    <a href="{% url 'ficha_list' %}" id="home-cards-url" class="btn">
+                        <div class="card-tittle">
+                            <span class="material-icons-outlined" style="font-size: 100px;">
+                                <i class="fa-solid fa-book-medical"></i>
+                            </span>
+                        </div>
+                        <span>Administrar Fichas</span>
+                    </a>
+                </div>
+                <div id="home-card" class="card">
+                    <a href="{% url 'calificacion_ver' %}" id="home-cards-url" class="btn">
+                        <div class="card-tittle">
+                            <span class="material-icons-outlined" style="font-size: 100px;">
+                                <i class="fa-solid fa-file-signature"></i>
+                            </span>
+                        </div>
+                        <span>Calificaciones</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+    
+    {% block extrajs %}    
+    {% endblock extrajs %}    
+{% endblock %}

@@ -1,0 +1,798 @@
+{% extends 'paginaweb/base.html' %}
+{% load manifest %}
+{% load static %}
+{% block content %}
+    {% block extra_css %}  
+    {% endblock extra_css %}
+<div class="col-md-12">
+    <p id="profile_title" class="mb-2 text-blue text-center">Inicio > Administrar Fichas > {{paciente_data.nombre}} > Crear ficha > Encuesta alimentaria</p>
+    <h2 class='h2 medium'>Crear encuesta alimentaria</h2>
+    <form method="post" action="{% url 'encuesta_save' ficha_id  %}">{% csrf_token %}
+        <hr>
+        <h6 class='h6 medium'>Pan Corriente</h6>
+        <legend style="font-size:14px">Frecuencia de consumo</legend>
+        <div id="form-column">
+            <div id="form-questions">
+                <fieldset id="questions"> <!--- Pregunta 0 --->
+                    <label id="question-label"><input type="radio" name="frecuencia-0" value="Todos los días" />Todos los días</label>
+                    <label id="question-label"><input type="radio" name="frecuencia-0" value="Veces por mes" />Veces por mes</label>
+                    <label id="question-label"><input type="radio" name="frecuencia-0" value="Veces por semana" />Veces por semana</label>
+                    <label id="question-label"><input type="radio" name="frecuencia-0" value="Nunca" checked="checked" /> Nunca</label>
+                </fieldset>
+            </div>
+            <div id="input-divform" class="row">
+                <div class="col-sm">
+                    <label class="form-label col-form-label-sm">Cantidad consumida</label>
+                    <input type="number" step="1" class="form-control form-control-sm" name="cantidad-0" id="cantidad-0" value=0 required>
+                </div>
+                <div class="col-sm">
+                    <label class="form-label col-form-label-sm">COMENTARIOS (¿Por qué lo consumes?, ¿Marca de producto? ¿Dónde lo compras?, etc).</label>
+                    <textarea name="comentario-0" id="comentario-0" class="form-control form-control-sm" rows="3" cols="30" maxlength="1500"></textarea>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <h6 class='h6 medium'>Pan integral</h6>
+        <div id="form-column">
+            <div id="form-questions">
+                <fieldset> <!--- Pregunta 1 --->
+                    <legend style="font-size:14px">Frecuencia de consumo</legend>
+                    <label id="question-label"><input type="radio" name="frecuencia-1" value="Todos los días" />Todos los días</label>
+                    <label id="question-label"><input type="radio" name="frecuencia-1" value="Veces por mes" />Veces por mes</label>
+                    <label id="question-label"><input type="radio" name="frecuencia-1" value="Veces por semana" />Veces por semana</label>
+                    <label id="question-label"><input type="radio" name="frecuencia-1" value="Nunca" checked="checked" /> Nunca</label>
+                </fieldset>
+            </div>
+            <div id="input-divform" class="row">
+                <div class="col-sm">
+                    <label class="form-label col-form-label-sm">Cantidad consumida</label>
+                    <input type="number" step="1" class="form-control form-control-sm" name="cantidad-1" id="cantidad-1" value=0 required>
+                </div>
+                <div class="col-sm">
+                    <label class="form-label col-form-label-sm">COMENTARIOS (¿Por qué lo consumes?, ¿Marca de producto? ¿Dónde lo compras?, etc).</label>
+                    <textarea name="comentario-1" id="comentario-1" class="form-control form-control-sm" rows="3" cols="30" maxlength="1500"></textarea>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <h6 class='h6 medium'>Arroz</h6>
+        <div id="form-column">
+            <div id="form-questions">
+                <fieldset> <!--- Pregunta 2 --->
+                    <legend style="font-size:14px">Frecuencia de consumo</legend>
+                    <label id="question-label"><input type="radio" name="frecuencia-2" value="Todos los días" />Todos los días</label>
+                    <label id="question-label"><input type="radio" name="frecuencia-2" value="Veces por mes" />Veces por mes</label>
+                    <label id="question-label"><input type="radio" name="frecuencia-2" value="Veces por semana" />Veces por semana</label>
+                    <label id="question-label"><input type="radio" name="frecuencia-2" value="Nunca" checked="checked" /> Nunca</label>
+                </fieldset>
+            </div>
+            <div id="input-divform" class="row">
+                <div class="col-sm">
+                    <label class="form-label col-form-label-sm">Cantidad consumida</label>
+                    <input type="number" step="1" class="form-control form-control-sm" name="cantidad-2" id="cantidad-2" value=0 required>
+                </div>
+                <div class="col-sm">
+                    <label class="form-label col-form-label-sm">COMENTARIOS (¿Por qué lo consumes?, ¿Marca de producto? ¿Dónde lo compras?, etc).</label>
+                    <textarea name="comentario-2" id="comentario-2" class="form-control form-control-sm" rows="3" cols="30" maxlength="1500"></textarea>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <h6 class='h6 medium'>Pastas</h6>
+        <div id="form-column">
+            <div id="form-questions">
+                <fieldset> <!--- Pregunta 3 --->
+                    <legend style="font-size:14px">Frecuencia de consumo</legend>
+                    <label id="question-label"><input type="radio" name="frecuencia-3" value="Todos los días" />Todos los días</label>
+                    <label id="question-label"><input type="radio" name="frecuencia-3" value="Veces por mes" />Veces por mes</label>
+                    <label id="question-label"><input type="radio" name="frecuencia-3" value="Veces por semana" />Veces por semana</label>
+                    <label id="question-label"><input type="radio" name="frecuencia-3" value="Nunca" checked="checked" /> Nunca</label>
+                </fieldset>
+            </div>
+            <div id="input-divform" class="row">
+                <div class="col-sm">
+                    <label class="form-label col-form-label-sm">Cantidad consumida</label>
+                    <input type="number" step="1" class="form-control form-control-sm" name="cantidad-3" id="cantidad-3" value=0 required>
+                </div>
+                <div class="col-sm">
+                    <label class="form-label col-form-label-sm">COMENTARIOS (¿Por qué lo consumes?, ¿Marca de producto? ¿Dónde lo compras?, etc).</label>
+                    <textarea name="comentario-3" id="comentario-3" class="form-control form-control-sm" rows="3" cols="30" maxlength="1500"></textarea>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <h6 class='h6 medium'>Legumbres</h6>
+        <div id="form-column">
+            <div id="form-questions">
+                <fieldset> <!--- Pregunta 4 --->
+                    <legend style="font-size:14px">Frecuencia de consumo</legend>
+                    <label id="question-label"><input type="radio" name="frecuencia-4" value="Todos los días" />Todos los días</label>
+                    <label id="question-label"><input type="radio" name="frecuencia-4" value="Veces por mes" />Veces por mes</label>
+                    <label id="question-label"><input type="radio" name="frecuencia-4" value="Veces por semana" />Veces por semana</label>
+                    <label id="question-label"><input type="radio" name="frecuencia-4" value="Nunca" checked="checked" /> Nunca</label>
+                </fieldset>
+            </div>
+            <div id="input-divform" class="row">
+                <div class="col-sm">
+                    <label class="form-label col-form-label-sm">Cantidad consumida</label>
+                    <input type="number" step="1" class="form-control form-control-sm" name="cantidad-4" id="cantidad-4" value=0 required>
+                </div>
+                <div class="col-sm">
+                    <label class="form-label col-form-label-sm">COMENTARIOS (¿Por qué lo consumes?, ¿Marca de producto? ¿Dónde lo compras?, etc).</label>
+                    <textarea name="comentario-4" id="comentario-4" class="form-control form-control-sm" rows="3" cols="30" maxlength="1500"></textarea>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <h6 class='h6 medium'>Papas cocidas</h6>
+        <div id="form-column">
+            <div id="form-questions">
+                <fieldset> <!--- Pregunta 5 --->
+                    <legend style="font-size:14px">Frecuencia de consumo</legend>
+                    <label id="question-label"><input type="radio" name="frecuencia-5" value="Todos los días" />Todos los días</label>
+                    <label id="question-label"><input type="radio" name="frecuencia-5" value="Veces por mes" />Veces por mes</label>
+                    <label id="question-label"><input type="radio" name="frecuencia-5" value="Veces por semana" />Veces por semana</label>
+                    <label id="question-label"><input type="radio" name="frecuencia-5" value="Nunca" checked="checked" /> Nunca</label>
+                </fieldset>
+            </div>
+            <div id="input-divform" class="row">
+                <div class="col-sm">
+                    <label class="form-label col-form-label-sm">Cantidad consumida</label>
+                    <input type="number" step="1" class="form-control form-control-sm" name="cantidad-5" id="cantidad-5" value=0 required>
+                </div>
+                <div class="col-sm">
+                    <label class="form-label col-form-label-sm">COMENTARIOS (¿Por qué lo consumes?, ¿Marca de producto? ¿Dónde lo compras?, etc).</label>
+                    <textarea name="comentario-5" id="comentario-5" class="form-control form-control-sm" rows="3" cols="30" maxlength="1500"></textarea>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <h6 class='h6 medium'>Papas fritas</h6>
+        <div id="form-column">
+            <div id="form-questions">
+                <fieldset> <!--- Pregunta 6 --->
+                    <legend style="font-size:14px">Frecuencia de consumo</legend>
+                    <label id="question-label"><input type="radio" name="frecuencia-6" value="Todos los días" />Todos los días</label>
+                    <label id="question-label"><input type="radio" name="frecuencia-6" value="Veces por mes" />Veces por mes</label>
+                    <label id="question-label"><input type="radio" name="frecuencia-6" value="Veces por semana" />Veces por semana</label>
+                    <label id="question-label"><input type="radio" name="frecuencia-6" value="Nunca" checked="checked" /> Nunca</label>
+                </fieldset>
+            </div>
+            <div id="input-divform" class="row">
+                <div class="col-sm">
+                    <label class="form-label col-form-label-sm">Cantidad consumida</label>
+                    <input type="number" step="1" class="form-control form-control-sm" name="cantidad-6" id="cantidad-6" value=0 required>
+                </div>
+                <div class="col-sm">
+                    <label class="form-label col-form-label-sm">COMENTARIOS (¿Por qué lo consumes?, ¿Marca de producto? ¿Dónde lo compras?, etc).</label>
+                    <textarea name="comentario-6" id="comentario-6" class="form-control form-control-sm" rows="3" cols="30" maxlength="1500"></textarea>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <h6 class='h6 medium'>Choclo</h6>
+        <div id="form-column">
+            <div id="form-questions">
+                <fieldset> <!--- Pregunta 7 --->
+                    <legend style="font-size:14px">Frecuencia de consumo</legend>
+                    <label id="question-label"><input type="radio" name="frecuencia-7" value="Todos los días" />Todos los días</label>
+                    <label id="question-label"><input type="radio" name="frecuencia-7" value="Veces por mes" />Veces por mes</label>
+                    <label id="question-label"><input type="radio" name="frecuencia-7" value="Veces por semana" />Veces por semana</label>
+                    <label id="question-label"><input type="radio" name="frecuencia-7" value="Nunca" checked="checked" /> Nunca</label>
+                </fieldset>
+            </div>
+            <div id="input-divform" class="row">
+                <div class="col-sm">
+                    <label class="form-label col-form-label-sm">Cantidad consumida</label>
+                    <input type="number" step="1" class="form-control form-control-sm" name="cantidad-7" id="cantidad-7" value=0 required>
+                </div>
+                <div class="col-sm">
+                    <label class="form-label col-form-label-sm">COMENTARIOS (¿Por qué lo consumes?, ¿Marca de producto? ¿Dónde lo compras?, etc).</label>
+                    <textarea name="comentario-7" id="comentario-7" class="form-control form-control-sm" rows="3" cols="30" maxlength="1500"></textarea>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <h6 class='h6 medium'>Verduras</h6>
+        <div id="form-column">
+            <div id="form-questions">
+                <fieldset> <!--- Pregunta 8 --->
+                    <legend style="font-size:14px">Frecuencia de consumo</legend>
+                    <label id="question-label"><input type="radio" name="frecuencia-8" value="Todos los días" />Todos los días</label>
+                    <label id="question-label"><input type="radio" name="frecuencia-8" value="Veces por mes" />Veces por mes</label>
+                    <label id="question-label"><input type="radio" name="frecuencia-8" value="Veces por semana" />Veces por semana</label>
+                    <label id="question-label"><input type="radio" name="frecuencia-8" value="Nunca" checked="checked" /> Nunca</label>
+                </fieldset>
+            </div>
+            <div id="input-divform" class="row">
+                <div class="col-sm">
+                    <label class="form-label col-form-label-sm">Cantidad consumida</label>
+                    <input type="number" step="1" class="form-control form-control-sm" name="cantidad-8" id="cantidad-8" value=0 required>
+                </div>
+                <div class="col-sm">
+                    <label class="form-label col-form-label-sm">COMENTARIOS (¿Por qué lo consumes?, ¿Marca de producto? ¿Dónde lo compras?, etc).</label>
+                    <textarea name="comentario-8" id="comentario-8" class="form-control form-control-sm" rows="3" cols="30" maxlength="1500"></textarea>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <h6 class='h6 medium'>Fruta</h6>
+        <div id="form-column">
+            <div id="form-questions">
+                <fieldset> <!--- Pregunta 9 --->
+                    <legend style="font-size:14px">Frecuencia de consumo</legend>
+                    <label id="question-label"><input type="radio" name="frecuencia-9" value="Todos los días" />Todos los días</label>
+                    <label id="question-label"><input type="radio" name="frecuencia-9" value="Veces por mes" />Veces por mes</label>
+                    <label id="question-label"><input type="radio" name="frecuencia-9" value="Veces por semana" />Veces por semana</label>
+                    <label id="question-label"><input type="radio" name="frecuencia-9" value="Nunca" checked="checked" /> Nunca</label>
+                </fieldset>
+            </div>
+            <div id="input-divform" class="row">
+                <div class="col-sm">
+                    <label class="form-label col-form-label-sm">Cantidad consumida</label>
+                    <input type="number" step="1" class="form-control form-control-sm" name="cantidad-9" id="cantidad-9" value=0 required>
+                </div>
+                <div class="col-sm">
+                    <label class="form-label col-form-label-sm">COMENTARIOS (¿Por qué lo consumes?, ¿Marca de producto? ¿Dónde lo compras?, etc).</label>
+                    <textarea name="comentario-9" id="comentario-9" class="form-control form-control-sm" rows="3" cols="30" maxlength="1500"></textarea>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <h6 class='h6 medium'>Carne de cerdo</h6>
+        <div id="form-column">
+            <div id="form-questions">
+                <fieldset> <!--- Pregunta 10 --->
+                    <legend style="font-size:14px">Frecuencia de consumo</legend>
+                    <label id="question-label"><input type="radio" name="frecuencia-10" value="Todos los días" />Todos los días</label>
+                    <label id="question-label"><input type="radio" name="frecuencia-10" value="Veces por mes" />Veces por mes</label>
+                    <label id="question-label"><input type="radio" name="frecuencia-10" value="Veces por semana" />Veces por semana</label>
+                    <label id="question-label"><input type="radio" name="frecuencia-10" value="Nunca" checked="checked" /> Nunca</label>
+                </fieldset>
+            </div>
+            <div id="input-divform" class="row">
+                <div class="col-sm">
+                    <label class="form-label col-form-label-sm">Cantidad consumida</label>
+                    <input type="number" step="1" class="form-control form-control-sm" name="cantidad-10" id="cantidad-10" value=0 required>
+                </div>
+                <div class="col-sm">
+                    <label class="form-label col-form-label-sm">COMENTARIOS (¿Por qué lo consumes?, ¿Marca de producto? ¿Dónde lo compras?, etc).</label>
+                    <textarea name="comentario-10" id="comentario-10" class="form-control form-control-sm" rows="3" cols="30" maxlength="1500"></textarea>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <h6 class='h6 medium'>Carne de ave y pavo</h6>
+        <div id="form-column">
+            <div id="form-questions">
+                <fieldset> <!--- Pregunta 11 --->
+                    <legend style="font-size:14px">Frecuencia de consumo</legend>
+                    <label id="question-label"><input type="radio" name="frecuencia-11" value="Todos los días" />Todos los días</label>
+                    <label id="question-label"><input type="radio" name="frecuencia-11" value="Veces por mes" />Veces por mes</label>
+                    <label id="question-label"><input type="radio" name="frecuencia-11" value="Veces por semana" />Veces por semana</label>
+                    <label id="question-label"><input type="radio" name="frecuencia-11" value="Nunca" checked="checked" /> Nunca</label>
+                </fieldset>
+            </div>
+            <div id="input-divform" class="row">
+                <div class="col-sm">
+                    <label class="form-label col-form-label-sm">Cantidad consumida</label>
+                    <input type="number" step="1" class="form-control form-control-sm" name="cantidad-11" id="cantidad-11" value=0 required>
+                </div>
+                <div class="col-sm">
+                    <label class="form-label col-form-label-sm">COMENTARIOS (¿Por qué lo consumes?, ¿Marca de producto? ¿Dónde lo compras?, etc).</label>
+                    <textarea name="comentario-11" id="comentario-11" class="form-control form-control-sm" rows="3" cols="30" maxlength="1500"></textarea>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <h6 class='h6 medium'>Carne de vacuno</h6>
+        <div id="form-column">
+            <div id="form-questions">
+                <fieldset> <!--- Pregunta 12 --->
+                    <legend style="font-size:14px">Frecuencia de consumo</legend>
+                    <label id="question-label"><input type="radio" name="frecuencia-12" value="Todos los días" />Todos los días</label>
+                    <label id="question-label"><input type="radio" name="frecuencia-12" value="Veces por mes" />Veces por mes</label>
+                    <label id="question-label"><input type="radio" name="frecuencia-12" value="Veces por semana" />Veces por semana</label>
+                    <label id="question-label"><input type="radio" name="frecuencia-12" value="Nunca" checked="checked" /> Nunca</label>
+                </fieldset>
+            </div>
+            <div id="input-divform" class="row">
+                <div class="col-sm">
+                    <label class="form-label col-form-label-sm">Cantidad consumida</label>
+                    <input type="number" step="1" class="form-control form-control-sm" name="cantidad-12" id="cantidad-12" value=0 required>
+                </div>
+                <div class="col-sm">
+                    <label class="form-label col-form-label-sm">COMENTARIOS (¿Por qué lo consumes?, ¿Marca de producto? ¿Dónde lo compras?, etc).</label>
+                    <textarea name="comentario-12" id="comentario-12" class="form-control form-control-sm" rows="3" cols="30" maxlength="1500"></textarea>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <h6 class='h6 medium'>Pescados</h6>
+        <div id="form-column">
+            <div id="form-questions">
+                <fieldset> <!--- Pregunta 13 --->
+                    <legend style="font-size:14px">Frecuencia de consumo</legend>
+                    <label id="question-label"><input type="radio" name="frecuencia-13" value="Todos los días" />Todos los días</label>
+                    <label id="question-label"><input type="radio" name="frecuencia-13" value="Veces por mes" />Veces por mes</label>
+                    <label id="question-label"><input type="radio" name="frecuencia-13" value="Veces por semana" />Veces por semana</label>
+                    <label id="question-label"><input type="radio" name="frecuencia-13" value="Nunca" checked="checked" /> Nunca</label>
+                </fieldset>
+            </div>
+            <div id="input-divform" class="row">
+                <div class="col-sm">
+                    <label class="form-label col-form-label-sm">Cantidad consumida</label>
+                    <input type="number" step="1" class="form-control form-control-sm" name="cantidad-13" id="cantidad-13" value=0 required>
+                </div>
+                <div class="col-sm">
+                    <label class="form-label col-form-label-sm">COMENTARIOS (¿Por qué lo consumes?, ¿Marca de producto? ¿Dónde lo compras?, etc).</label>
+                    <textarea name="comentario-13" id="comentario-13" class="form-control form-control-sm" rows="3" cols="30" maxlength="1500"></textarea>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <h6 class='h6 medium'>Mariscos</h6>
+        <div id="form-column">
+            <div id="form-questions">
+                <fieldset> <!--- Pregunta 14 --->
+                    <legend style="font-size:14px">Frecuencia de consumo</legend>
+                    <label id="question-label"><input type="radio" name="frecuencia-14" value="Todos los días" />Todos los días</label>
+                    <label id="question-label"><input type="radio" name="frecuencia-14" value="Veces por mes" />Veces por mes</label>
+                    <label id="question-label"><input type="radio" name="frecuencia-14" value="Veces por semana" />Veces por semana</label>
+                    <label id="question-label"><input type="radio" name="frecuencia-14" value="Nunca" checked="checked" /> Nunca</label>
+                </fieldset>
+            </div>
+            <div id="input-divform" class="row">
+                <div class="col-sm">
+                    <label class="form-label col-form-label-sm">Cantidad consumida</label>
+                    <input type="number" step="1" class="form-control form-control-sm" name="cantidad-14" id="cantidad-14" value=0 required>
+                </div>
+                <div class="col-sm">
+                    <label class="form-label col-form-label-sm">COMENTARIOS (¿Por qué lo consumes?, ¿Marca de producto? ¿Dónde lo compras?, etc).</label>
+                    <textarea name="comentario-14" id="comentario-14" class="form-control form-control-sm" rows="3" cols="30" maxlength="1500"></textarea>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <h6 class='h6 medium'>Huevos</h6>
+        <div id="form-column">
+            <div id="form-questions">
+                <fieldset> <!--- Pregunta 15 --->
+                    <legend style="font-size:14px">Frecuencia de consumo</legend>
+                    <label id="question-label"><input type="radio" name="frecuencia-15" value="Todos los días" />Todos los días</label>
+                    <label id="question-label"><input type="radio" name="frecuencia-15" value="Veces por mes" />Veces por mes</label>
+                    <label id="question-label"><input type="radio" name="frecuencia-15" value="Veces por semana" />Veces por semana</label>
+                    <label id="question-label"><input type="radio" name="frecuencia-15" value="Nunca" checked="checked" /> Nunca</label>
+                </fieldset>
+            </div>
+            <div id="input-divform" class="row">
+                <div class="col-sm">
+                    <label class="form-label col-form-label-sm">Cantidad consumida</label>
+                    <input type="number" step="1" class="form-control form-control-sm" name="cantidad-15" id="cantidad-15" value=0 required>
+                </div>
+                <div class="col-sm">
+                    <label class="form-label col-form-label-sm">COMENTARIOS (¿Por qué lo consumes?, ¿Marca de producto? ¿Dónde lo compras?, etc).</label>
+                    <textarea name="comentario-15" id="comentario-15" class="form-control form-control-sm" rows="3" cols="30" maxlength="1500"></textarea>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <h6 class='h6 medium'>Leche entera</h6>
+        <div id="form-column">
+            <div id="form-questions">
+                <fieldset> <!--- Pregunta 16 --->
+                    <legend style="font-size:14px">Frecuencia de consumo</legend>
+                    <label id="question-label"><input type="radio" name="frecuencia-16" value="Todos los días" />Todos los días</label>
+                    <label id="question-label"><input type="radio" name="frecuencia-16" value="Veces por mes" />Veces por mes</label>
+                    <label id="question-label"><input type="radio" name="frecuencia-16" value="Veces por semana" />Veces por semana</label>
+                    <label id="question-label"><input type="radio" name="frecuencia-16" value="Nunca" checked="checked" /> Nunca</label>
+                </fieldset>
+            </div>
+            <div id="input-divform" class="row">
+                <div class="col-sm">
+                    <label class="form-label col-form-label-sm">Cantidad consumida</label>
+                    <input type="number" step="1" class="form-control form-control-sm" name="cantidad-16" id="cantidad-16" value=0 required>
+                </div>
+                <div class="col-sm">
+                    <label class="form-label col-form-label-sm">COMENTARIOS (¿Por qué lo consumes?, ¿Marca de producto? ¿Dónde lo compras?, etc).</label>
+                    <textarea name="comentario-16" id="comentario-16" class="form-control form-control-sm" rows="3" cols="30" maxlength="1500"></textarea>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <h6 class='h6 medium'>Leche semi-descremada</h6>
+        <div id="form-column">
+            <div id="form-questions">
+                <fieldset> <!--- Pregunta 17 --->
+                    <legend style="font-size:14px">Frecuencia de consumo</legend>
+                    <label id="question-label"><input type="radio" name="frecuencia-17" value="Todos los días" />Todos los días</label>
+                    <label id="question-label"><input type="radio" name="frecuencia-17" value="Veces por mes" />Veces por mes</label>
+                    <label id="question-label"><input type="radio" name="frecuencia-17" value="Veces por semana" />Veces por semana</label>
+                    <label id="question-label"><input type="radio" name="frecuencia-17" value="Nunca" checked="checked" /> Nunca</label>
+                </fieldset>
+            </div>
+            <div id="input-divform" class="row">
+                <div class="col-sm">
+                    <label class="form-label col-form-label-sm">Cantidad consumida</label>
+                    <input type="number" step="1" class="form-control form-control-sm" name="cantidad-17" id="cantidad-17" value=0 required>
+                </div>
+                <div class="col-sm">
+                    <label class="form-label col-form-label-sm">COMENTARIOS (¿Por qué lo consumes?, ¿Marca de producto? ¿Dónde lo compras?, etc).</label>
+                    <textarea name="comentario-17" id="comentario-17" class="form-control form-control-sm" rows="3" cols="30" maxlength="1500"></textarea>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <h6 class='h6 medium'>Leche descremada</h6>
+        <div id="form-column">
+            <div id="form-questions">
+                <fieldset> <!--- Pregunta 18 --->
+                    <legend style="font-size:14px">Frecuencia de consumo</legend>
+                    <label id="question-label"><input type="radio" name="frecuencia-18" value="Todos los días" />Todos los días</label>
+                    <label id="question-label"><input type="radio" name="frecuencia-18" value="Veces por mes" />Veces por mes</label>
+                    <label id="question-label"><input type="radio" name="frecuencia-18" value="Veces por semana" />Veces por semana</label>
+                    <label id="question-label"><input type="radio" name="frecuencia-18" value="Nunca" checked="checked" /> Nunca</label>
+                </fieldset>
+            </div>
+            <div id="input-divform" class="row">
+                <div class="col-sm">
+                    <label class="form-label col-form-label-sm">Cantidad consumida</label>
+                    <input type="number" step="1" class="form-control form-control-sm" name="cantidad-18" id="cantidad-18" value=0 required>
+                </div>
+                <div class="col-sm">
+                    <label class="form-label col-form-label-sm">COMENTARIOS (¿Por qué lo consumes?, ¿Marca de producto? ¿Dónde lo compras?, etc).</label>
+                    <textarea name="comentario-18" id="comentario-18" class="form-control form-control-sm" rows="3" cols="30" maxlength="1500"></textarea>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <h6 class='h6 medium'>Yogurt</h6>
+        <div id="form-column">
+            <div id="form-questions">
+                <fieldset> <!--- Pregunta 19 --->
+                    <legend style="font-size:14px">Frecuencia de consumo</legend>
+                    <label id="question-label"><input type="radio" name="frecuencia-19" value="Todos los días" />Todos los días</label>
+                    <label id="question-label"><input type="radio" name="frecuencia-19" value="Veces por mes" />Veces por mes</label>
+                    <label id="question-label"><input type="radio" name="frecuencia-19" value="Veces por semana" />Veces por semana</label>
+                    <label id="question-label"><input type="radio" name="frecuencia-19" value="Nunca" checked="checked" /> Nunca</label>
+                </fieldset>
+            </div>
+            <div id="input-divform" class="row">
+                <div class="col-sm">
+                    <label class="form-label col-form-label-sm">Cantidad consumida</label>
+                    <input type="number" step="1" class="form-control form-control-sm" name="cantidad-19" id="cantidad-19" value=0 required>
+                </div>
+                <div class="col-sm">
+                    <label class="form-label col-form-label-sm">COMENTARIOS (¿Por qué lo consumes?, ¿Marca de producto? ¿Dónde lo compras?, etc).</label>
+                    <textarea name="comentario-19" id="comentario-19" class="form-control form-control-sm" rows="3" cols="30" maxlength="1500"></textarea>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <h6 class='h6 medium'>Quesos amarillos</h6>
+        <div id="form-column">
+            <div id="form-questions">
+                <fieldset> <!--- Pregunta 20 --->
+                    <legend style="font-size:14px">Frecuencia de consumo</legend>
+                    <label id="question-label"><input type="radio" name="frecuencia-20" value="Todos los días" />Todos los días</label>
+                    <label id="question-label"><input type="radio" name="frecuencia-20" value="Veces por mes" />Veces por mes</label>
+                    <label id="question-label"><input type="radio" name="frecuencia-20" value="Veces por semana" />Veces por semana</label>
+                    <label id="question-label"><input type="radio" name="frecuencia-20" value="Nunca" checked="checked" /> Nunca</label>
+                </fieldset>
+            </div>
+            <div id="input-divform" class="row">
+                <div class="col-sm">
+                    <label class="form-label col-form-label-sm">Cantidad consumida</label>
+                    <input type="number" step="1" class="form-control form-control-sm" name="cantidad-20" id="cantidad-20" value=0 required>
+                </div>
+                <div class="col-sm">
+                    <label class="form-label col-form-label-sm">COMENTARIOS (¿Por qué lo consumes?, ¿Marca de producto? ¿Dónde lo compras?, etc).</label>
+                    <textarea name="comentario-20" id="comentario-20" class="form-control form-control-sm" rows="3" cols="30" maxlength="1500"></textarea>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <h6 class='h6 medium'>Queso chacra o Quesillo</h6>
+        <div id="form-column">
+            <div id="form-questions">
+                <fieldset> <!--- Pregunta 21 --->
+                    <legend style="font-size:14px">Frecuencia de consumo</legend>
+                    <label id="question-label"><input type="radio" name="frecuencia-21" value="Todos los días" />Todos los días</label>
+                    <label id="question-label"><input type="radio" name="frecuencia-21" value="Veces por mes" />Veces por mes</label>
+                    <label id="question-label"><input type="radio" name="frecuencia-21" value="Veces por semana" />Veces por semana</label>
+                    <label id="question-label"><input type="radio" name="frecuencia-21" value="Nunca" checked="checked" /> Nunca</label>
+                </fieldset>
+            </div>
+            <div id="input-divform" class="row">
+                <div class="col-sm">
+                    <label class="form-label col-form-label-sm">Cantidad consumida</label>
+                    <input type="number" step="1" class="form-control form-control-sm" name="cantidad-21" id="cantidad-21" value=0 required>
+                </div>
+                <div class="col-sm">
+                    <label class="form-label col-form-label-sm">COMENTARIOS (¿Por qué lo consumes?, ¿Marca de producto? ¿Dónde lo compras?, etc).</label>
+                    <textarea name="comentario-21" id="comentario-21" class="form-control form-control-sm" rows="3" cols="30" maxlength="1500"></textarea>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <h6 class='h6 medium'>Aceite</h6>
+        <div id="form-column">
+            <div id="form-questions">
+                <fieldset> <!--- Pregunta 22 --->
+                    <legend style="font-size:14px">Frecuencia de consumo</legend>
+                    <label id="question-label"><input type="radio" name="frecuencia-22" value="Todos los días" />Todos los días</label>
+                    <label id="question-label"><input type="radio" name="frecuencia-22" value="Veces por mes" />Veces por mes</label>
+                    <label id="question-label"><input type="radio" name="frecuencia-22" value="Veces por semana" />Veces por semana</label>
+                    <label id="question-label"><input type="radio" name="frecuencia-22" value="Nunca" checked="checked" /> Nunca</label>
+                </fieldset>
+            </div>
+            <div id="input-divform" class="row">
+                <div class="col-sm">
+                    <label class="form-label col-form-label-sm">Cantidad consumida</label>
+                    <input type="number" step="1" class="form-control form-control-sm" name="cantidad-22" id="cantidad-22" value=0 required>
+                </div>
+                <div class="col-sm">
+                    <label class="form-label col-form-label-sm">COMENTARIOS (¿Por qué lo consumes?, ¿Marca de producto? ¿Dónde lo compras?, etc).</label>
+                    <textarea name="comentario-22" id="comentario-22" class="form-control form-control-sm" rows="3" cols="30" maxlength="1500"></textarea>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <h6 class='h6 medium'>Aceite de oliva</h6>
+        <div id="form-column">
+            <div id="form-questions">
+                <fieldset> <!--- Pregunta 23 --->
+                    <legend style="font-size:14px">Frecuencia de consumo</legend>
+                    <label id="question-label"><input type="radio" name="frecuencia-23" value="Todos los días" />Todos los días</label>
+                    <label id="question-label"><input type="radio" name="frecuencia-23" value="Veces por mes" />Veces por mes</label>
+                    <label id="question-label"><input type="radio" name="frecuencia-23" value="Veces por semana" />Veces por semana</label>
+                    <label id="question-label"><input type="radio" name="frecuencia-23" value="Nunca" checked="checked" /> Nunca</label>
+                </fieldset>
+            </div>
+            <div id="input-divform" class="row">
+                <div class="col-sm">
+                    <label class="form-label col-form-label-sm">Cantidad consumida</label>
+                    <input type="number" step="1" class="form-control form-control-sm" name="cantidad-23" id="cantidad-23" value=0 required>
+                </div>
+                <div class="col-sm">
+                    <label class="form-label col-form-label-sm">COMENTARIOS (¿Por qué lo consumes?, ¿Marca de producto? ¿Dónde lo compras?, etc).</label>
+                    <textarea name="comentario-23" id="comentario-23" class="form-control form-control-sm" rows="3" cols="30" maxlength="1500"></textarea>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <h6 class='h6 medium'>Embutidos</h6>
+        <div id="form-column">
+            <div id="form-questions">
+                <fieldset> <!--- Pregunta 24 --->
+                    <legend style="font-size:14px">Frecuencia de consumo</legend>
+                    <label id="question-label"><input type="radio" name="frecuencia-24" value="Todos los días" />Todos los días</label>
+                    <label id="question-label"><input type="radio" name="frecuencia-24" value="Veces por mes" />Veces por mes</label>
+                    <label id="question-label"><input type="radio" name="frecuencia-24" value="Veces por semana" />Veces por semana</label>
+                    <label id="question-label"><input type="radio" name="frecuencia-24" value="Nunca" checked="checked" /> Nunca</label>
+                </fieldset>
+            </div>
+            <div id="input-divform" class="row">
+                <div class="col-sm">
+                    <label class="form-label col-form-label-sm">Cantidad consumida</label>
+                    <input type="number" step="1" class="form-control form-control-sm" name="cantidad-24" id="cantidad-24" value=0 required>
+                </div>
+                <div class="col-sm">
+                    <label class="form-label col-form-label-sm">COMENTARIOS (¿Por qué lo consumes?, ¿Marca de producto? ¿Dónde lo compras?, etc).</label>
+                    <textarea name="comentario-24" id="comentario-24" class="form-control form-control-sm" rows="3" cols="30" maxlength="1500"></textarea>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <h6 class='h6 medium'>Cecinas</h6>
+        <div id="form-column">
+            <div id="form-questions">
+                <fieldset> <!--- Pregunta 25 --->
+                    <legend style="font-size:14px">Frecuencia de consumo</legend>
+                    <label id="question-label"><input type="radio" name="frecuencia-25" value="Todos los días" />Todos los días</label>
+                    <label id="question-label"><input type="radio" name="frecuencia-25" value="Veces por mes" />Veces por mes</label>
+                    <label id="question-label"><input type="radio" name="frecuencia-25" value="Veces por semana" />Veces por semana</label>
+                    <label id="question-label"><input type="radio" name="frecuencia-25" value="Nunca" checked="checked" /> Nunca</label>
+                </fieldset>
+            </div>
+            <div id="input-divform" class="row">
+                <div class="col-sm">
+                    <label class="form-label col-form-label-sm">Cantidad consumida</label>
+                    <input type="number" step="1" class="form-control form-control-sm" name="cantidad-25" id="cantidad-25" value=0 required>
+                </div>
+                <div class="col-sm">
+                    <label class="form-label col-form-label-sm">COMENTARIOS (¿Por qué lo consumes?, ¿Marca de producto? ¿Dónde lo compras?, etc).</label>
+                    <textarea name="comentario-25" id="comentario-25" class="form-control form-control-sm" rows="3" cols="30" maxlength="1500"></textarea>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <h6 class='h6 medium'>Enlatados o conservas</h6>
+        <div id="form-column">
+            <div id="form-questions">
+                <fieldset> <!--- Pregunta 26 --->
+                    <legend style="font-size:14px">Frecuencia de consumo</legend>
+                    <label id="question-label"><input type="radio" name="frecuencia-26" value="Todos los días" />Todos los días</label>
+                    <label id="question-label"><input type="radio" name="frecuencia-26" value="Veces por mes" />Veces por mes</label>
+                    <label id="question-label"><input type="radio" name="frecuencia-26" value="Veces por semana" />Veces por semana</label>
+                    <label id="question-label"><input type="radio" name="frecuencia-26" value="Nunca" checked="checked" /> Nunca</label>
+                </fieldset>
+            </div>
+            <div id="input-divform" class="row">
+                <div class="col-sm">
+                    <label class="form-label col-form-label-sm">Cantidad consumida</label>
+                    <input type="number" step="1" class="form-control form-control-sm" name="cantidad-26" id="cantidad-26" value=0 required>
+                </div>
+                <div class="col-sm">
+                    <label class="form-label col-form-label-sm">COMENTARIOS (¿Por qué lo consumes?, ¿Marca de producto? ¿Dónde lo compras?, etc).</label>
+                    <textarea name="comentario-26" id="comentario-26" class="form-control form-control-sm" rows="3" cols="30" maxlength="1500"></textarea>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <h6 class='h6 medium'>Pasteles</h6>
+        <div id="form-column">
+            <div id="form-questions">
+                <fieldset> <!--- Pregunta 27 --->
+                    <legend style="font-size:14px">Frecuencia de consumo</legend>
+                    <label id="question-label"><input type="radio" name="frecuencia-27" value="Todos los días" />Todos los días</label>
+                    <label id="question-label"><input type="radio" name="frecuencia-27" value="Veces por mes" />Veces por mes</label>
+                    <label id="question-label"><input type="radio" name="frecuencia-27" value="Veces por semana" />Veces por semana</label>
+                    <label id="question-label"><input type="radio" name="frecuencia-27" value="Nunca" checked="checked" /> Nunca</label>
+                </fieldset>
+            </div>
+            <div id="input-divform" class="row">
+                <div class="col-sm">
+                    <label class="form-label col-form-label-sm">Cantidad consumida</label>
+                    <input type="number" step="1" class="form-control form-control-sm" name="cantidad-27" id="cantidad-27" value=0 required>
+                </div>
+                <div class="col-sm">
+                    <label class="form-label col-form-label-sm">COMENTARIOS (¿Por qué lo consumes?, ¿Marca de producto? ¿Dónde lo compras?, etc).</label>
+                    <textarea name="comentario-27" id="comentario-27" class="form-control form-control-sm" rows="3" cols="30" maxlength="1500"></textarea>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <h6 class='h6 medium'>Snack salados</h6>
+        <div id="form-column">
+            <div id="form-questions">
+                <fieldset> <!--- Pregunta 28 --->
+                    <legend style="font-size:14px">Frecuencia de consumo</legend>
+                    <label id="question-label"><input type="radio" name="frecuencia-28" value="Todos los días" />Todos los días</label>
+                    <label id="question-label"><input type="radio" name="frecuencia-28" value="Veces por mes" />Veces por mes</label>
+                    <label id="question-label"><input type="radio" name="frecuencia-28" value="Veces por semana" />Veces por semana</label>
+                    <label id="question-label"><input type="radio" name="frecuencia-28" value="Nunca" checked="checked" /> Nunca</label>
+                </fieldset>
+            </div>
+            <div id="input-divform" class="row">
+                <div class="col-sm">
+                    <label class="form-label col-form-label-sm">Cantidad consumida</label>
+                    <input type="number" step="1" class="form-control form-control-sm" name="cantidad-28" id="cantidad-28" value=0 required>
+                </div>
+                <div class="col-sm">
+                    <label class="form-label col-form-label-sm">COMENTARIOS (¿Por qué lo consumes?, ¿Marca de producto? ¿Dónde lo compras?, etc).</label>
+                    <textarea name="comentario-28" id="comentario-28" class="form-control form-control-sm" rows="3" cols="30" maxlength="1500"></textarea>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <h6 class='h6 medium'>Snack dulces</h6>
+        <div id="form-column">
+            <div id="form-questions">
+                <fieldset> <!--- Pregunta 29 --->
+                    <legend style="font-size:14px">Frecuencia de consumo</legend>
+                    <label id="question-label"><input type="radio" name="frecuencia-29" value="Todos los días" />Todos los días</label>
+                    <label id="question-label"><input type="radio" name="frecuencia-29" value="Veces por mes" />Veces por mes</label>
+                    <label id="question-label"><input type="radio" name="frecuencia-29" value="Veces por semana" />Veces por semana</label>
+                    <label id="question-label"><input type="radio" name="frecuencia-29" value="Nunca" checked="checked" /> Nunca</label>
+                </fieldset>
+            </div>
+            <div id="input-divform" class="row">
+                <div class="col-sm">
+                    <label class="form-label col-form-label-sm">Cantidad consumida</label>
+                    <input type="number" step="1" class="form-control form-control-sm" name="cantidad-29" id="cantidad-29" value=0 required>
+                </div>
+                <div class="col-sm">
+                    <label class="form-label col-form-label-sm">COMENTARIOS (¿Por qué lo consumes?, ¿Marca de producto? ¿Dónde lo compras?, etc).</label>
+                    <textarea name="comentario-29" id="comentario-29" class="form-control form-control-sm" rows="3" cols="30" maxlength="1500"></textarea>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <h6 class='h6 medium'>Azúcar</h6>
+        <div id="form-column">
+            <div id="form-questions">
+                <fieldset> <!--- Pregunta 30 --->
+                    <legend style="font-size:14px">Frecuencia de consumo</legend>
+                    <label id="question-label"><input type="radio" name="frecuencia-30" value="Todos los días" />Todos los días</label>
+                    <label id="question-label"><input type="radio" name="frecuencia-30" value="Veces por mes" />Veces por mes</label>
+                    <label id="question-label"><input type="radio" name="frecuencia-30" value="Veces por semana" />Veces por semana</label>
+                    <label id="question-label"><input type="radio" name="frecuencia-30" value="Nunca" checked="checked" /> Nunca</label>
+                </fieldset>
+            </div>
+            <div id="input-divform" class="row">
+                <div class="col-sm">
+                    <label class="form-label col-form-label-sm">Cantidad consumida</label>
+                    <input type="number" step="1" class="form-control form-control-sm" name="cantidad-30" id="cantidad-30" value=0 required>
+                </div>
+                <div class="col-sm">
+                    <label class="form-label col-form-label-sm">COMENTARIOS (¿Por qué lo consumes?, ¿Marca de producto? ¿Dónde lo compras?, etc).</label>
+                    <textarea name="comentario-30" id="comentario-30" class="form-control form-control-sm" rows="3" cols="30" maxlength="1500"></textarea>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <h6 class='h6 medium'>Sal</h6>
+        <div id="form-column">
+            <div id="form-questions">
+                <fieldset> <!--- Pregunta 31 --->
+                    <legend style="font-size:14px">Frecuencia de consumo</legend>
+                    <label id="question-label"><input type="radio" name="frecuencia-31" value="Todos los días" />Todos los días</label>
+                    <label id="question-label"><input type="radio" name="frecuencia-31" value="Veces por mes" />Veces por mes</label>
+                    <label id="question-label"><input type="radio" name="frecuencia-31" value="Veces por semana" />Veces por semana</label>
+                    <label id="question-label"><input type="radio" name="frecuencia-31" value="Nunca" checked="checked" /> Nunca</label>
+                </fieldset>
+            </div>
+            <div id="input-divform" class="row">
+                <div class="col-sm">
+                    <label class="form-label col-form-label-sm">Cantidad consumida</label>
+                    <input type="number" step="1" class="form-control form-control-sm" name="cantidad-31" id="cantidad-31" value=0 required>
+                </div>
+                <div class="col-sm">
+                    <label class="form-label col-form-label-sm">COMENTARIOS (¿Por qué lo consumes?, ¿Marca de producto? ¿Dónde lo compras?, etc).</label>
+                    <textarea name="comentario-31" id="comentario-31" class="form-control form-control-sm" rows="3" cols="30" maxlength="1500"></textarea>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <h6 class='h6 medium'>Bebida azúcaras</h6>
+        <div id="form-column">
+            <div id="form-questions">
+                <fieldset> <!--- Pregunta 32 --->
+                    <legend style="font-size:14px">Frecuencia de consumo</legend>
+                    <label id="question-label"><input type="radio" name="frecuencia-32" value="Todos los días" />Todos los días</label>
+                    <label id="question-label"><input type="radio" name="frecuencia-32" value="Veces por mes" />Veces por mes</label>
+                    <label id="question-label"><input type="radio" name="frecuencia-32" value="Veces por semana" />Veces por semana</label>
+                    <label id="question-label"><input type="radio" name="frecuencia-32" value="Nunca" checked="checked" /> Nunca</label>
+                </fieldset>
+            </div>
+            <div id="input-divform" class="row">
+                <div class="col-sm">
+                    <label class="form-label col-form-label-sm">Cantidad consumida</label>
+                    <input type="number" step="1" class="form-control form-control-sm" name="cantidad-32" id="cantidad-32" value=0 required>
+                </div>
+                <div class="col-sm">
+                    <label class="form-label col-form-label-sm">COMENTARIOS (¿Por qué lo consumes?, ¿Marca de producto? ¿Dónde lo compras?, etc).</label>
+                    <textarea name="comentario-32" id="comentario-32" class="form-control form-control-sm" rows="3" cols="30" maxlength="1500"></textarea>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <h6 class='h6 medium'>Otro que no aparezca</h6>
+        <div id="form-column">
+            <div id="form-questions">
+                <fieldset> <!--- Pregunta 33 --->
+                    <legend style="font-size:14px">Frecuencia de consumo</legend>
+                    <label id="question-label"><input type="radio" name="frecuencia-33" value="Todos los días" />Todos los días</label>
+                    <label id="question-label"><input type="radio" name="frecuencia-33" value="Veces por mes" />Veces por mes</label>
+                    <label id="question-label"><input type="radio" name="frecuencia-33" value="Veces por semana" />Veces por semana</label>
+                    <label id="question-label"><input type="radio" name="frecuencia-33" value="Nunca" checked="checked" /> Nunca</label>
+                </fieldset>
+            </div>
+            <div id="input-divform" class="row">
+                <div class="col-sm">
+                    <label class="form-label col-form-label-sm">Cantidad consumida</label>
+                    <input type="number" step="1" class="form-control form-control-sm" name="cantidad-33" id="cantidad-33" value=0 required>
+                </div>
+                <div class="col-sm">
+                    <label class="form-label col-form-label-sm">COMENTARIOS (¿Por qué lo consumes?, ¿Marca de producto? ¿Dónde lo compras?, etc).</label>
+                    <textarea name="comentario-33" id="comentario-33" class="form-control form-control-sm" rows="3" cols="30" maxlength="1500"></textarea>
+                </div>
+            </div>
+        </div>
+        <div id="al-buttons">
+            <button type="submit" class="button">Guardar</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

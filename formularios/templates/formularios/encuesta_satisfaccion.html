@@ -1,0 +1,38 @@
+{% extends 'paginaweb/base.html' %}
+{% load manifest %}
+{% load static %}
+{% block content %}
+    {% block extra_css %}  
+    {% endblock extra_css %}
+
+
+<div class="col-md-12">
+    <h2 class='h2 medium'>Encuesta satisfacción</h2>
+    <form method="post" action="{% url 'encuesta_satisfaccion_save' token %}">{% csrf_token %}
+        <div id="formContent">
+            <div class="container container-fluid">
+                <hr>
+                <h4>Estudiante</h4>
+                <h6>Nombre nutricionista: {{estudiante_data.nombre}}</h6>
+                <h6>Correo nutricionista: {{estudiante_data.email}}</h6>
+            </div>
+            <hr>
+            <legend>¿Cómo evaluaría la atención dada por {{estudiante_data.nombre}}?</legend>
+            <div id="form-column">
+                <div id="form-questions">
+                    <fieldset id="questions"> <!--- Pregunta 0 --->
+                        <label id="question-label"><input type="radio" name="satisfaccion" value="Pésima" />Pésima</label>
+                        <label id="question-label"><input type="radio" name="satisfaccion" value="Regular" />Regular</label>
+                        <label id="question-label"><input type="radio" name="satisfaccion" value="Excelente" />Excelente</label>
+                    </fieldset>
+                </div>
+            </div>
+            <div class="d-flex justify-content-center">
+                <button type="submit" class="d-flex justify-content-center button">Guardar</button>
+                <br>
+            </div>
+        </div>
+        
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,93 @@
+{% extends 'paginaweb/base.html' %}
+{% load manifest %}
+{% load static %}
+{% block content %}
+    {% block extra_css %}    
+    {% endblock extra_css %}
+<div class="col-lg-12">
+    <p id="profile_title" class="mb-2 text-blue text-center">Inicio > Administrar estudiantes > Añadir estudiante</p>
+    <h2 class='h2 medium'>Añadir estudiantes</h2>
+    {% if messages %}
+        <ul class="messagelist text-success">{% for message in messages %}<li>{{ message }}</li>{% endfor %}</ul>
+    {% endif %}
+    <div class="add-user-containers">
+        <form id="add_estudiante" method="post" action="{% url 'estudiante_save' %}">{% csrf_token %}
+            <div class="adduser-buttons-mobile">
+                <p id="Cant-estudiantes-mobile">Añadiendo 1 estudiante</p>
+                <p id="profile_title" class="mb-2 text-blue text-center multiple-users-subtitle">Para registrar o quitar mas estudiantes utiliza los siguientes botones:</p>
+                <div class="+-buttons-mobile">
+                    <button onclick="addInput()" id="add-user-button" class="button">Añadir</button>
+                    <button onclick="deleteInput()" id="remove-user-button" class="button">Quitar</button>
+                </div>
+            </div>
+            <div class="add-user-container">
+                <div class="add-buttons">
+                    <div class="fixed-buttons">
+                        <p id="Cant-estudiantes">Añadiendo 1 estudiante</p>
+                        <p id="profile_title" class="mb-2 text-blue text-center multiple-users-subtitle">Para registrar o quitar mas estudiantes utiliza los siguientes botones:</p>
+                        <div class="col-2">
+                            <input type="text" class="form-control form-control-sm" value="1" name="cantidad" id="cantidad" readonly hidden required>
+                        </div>
+                        <div class="+-buttons">
+                            <button onclick="addInput()" id="add-user-button" class="button">Añadir</button>
+                            <button onclick="deleteInput()" id="remove-user-button" class="button">Quitar</button>
+                        </div>
+                        <p id="plantilla-title">Carga masiva</p>
+                        <p id="plantilla-content">También puedes agregar varios usuarios simultaneamente subiendo un archivo excel</p>
+                        <p id="plantilla-text">Para descargar la plantilla haz click <a href="{% url 'descargar_estudiante' %}">aquí</a></p>
+                        <div id="drag-excel" class="drag-area">
+                            <h2 id="Title-drop-box">Arrastra y suelta tu archivo aquí</h2>
+                            <span>o</span>
+                            <button id="drag-area-button" class="btn btn-primary">Selecciona tu archivo</button>
+                        </div>
+                        <div class="drag-button">
+                            <button id="upload_ex_button" class="button" type="submit" form="carga_masiva">Subir</button>
+                        </div>
+                        <p id="profile_title" class="mb-2 text-blue text-center multiple-users-subtitle">Para confirmar la creación de los usuarios pulsa en guardar, de lo contrario presiona volver.</p>
+                        <div class="d-flex justify-content-center">
+                            <button type="submit" class="button">Guardar</button>
+                            <a href="{% url 'estudiante_list' %}" id="user-add-backbutton" class="button">Volver</a>
+                        </div>
+                    </div>
+                </div>
+                <div id="formContent">
+                    <p class="estudiante 1">estudiante N°1</p>
+                    <label for="nombre-1" class="form-label col-form-label-sm">Nombre completo:</label>
+                    <input type="text" class="form-control form-control-sm" name="nombre-1" id="nombre-1" placeholder="Nombre(s) Apellido(s)" required>
+                    <label for="email-1" class="form-label col-form-label-sm">Email alumno:</label>
+                    <input type="email" class="form-control form-control-sm" name="email-1" id="email-1" placeholder="autonoma@correo.com" required>
+                    <div class="row">
+                        <div class="col-9">
+                            <label for="rut-1" class="form-label col-form-label-sm">Rut alumno:</label>
+                            <input type="text" class="form-control form-control-sm" name="rut-1" id="rut-1" placeholder="12345678" required>
+                        </div>
+                        <div class="col-3">
+                            <label for="dv-1" class="form-label col-form-label-sm">DV:</label>
+                            <input type="text" class="form-control form-control-sm" name="dv-1" id="dv-1" placeholder="K" required>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="footer-buttons-addusers">
+                <p id="profile_title" class="mb-2 text-blue text-center multiple-users-subtitle">Para confirmar la creación de los usuarios pulsa en guardar, de lo contrario presiona volver.</p>
+                <div id="user_close_buttons" class="d-flex justify-content-center">
+                    <button type="submit" class="button">Guardar</button>
+                    <a href="{% url 'estudiante_list' %}" id="user-add-backbutton" class="button">Volver</a>
+                </div>
+            </div>
+        </form>
+        <div class="upload_excel_container" hidden>
+            <form id="carga_masiva" method="POST" action="{% url 'estudiante_load_save' %}" enctype="multipart/form-data">{% csrf_token %}
+                <input type="file" name="estudiante_excel" id="estudiante_excel"/>
+            </form>
+        </div>
+    </div>
+</div>
+    {% block extrajs %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="{% static 'js/estudiante_add.js' %}"></script>
+    <script src="{% static 'js/Drag_and_drop_users.js' %}"></script> 
+    {% endblock extrajs %}
+{% endblock %}
+
+

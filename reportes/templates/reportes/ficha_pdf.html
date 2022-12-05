@@ -1,0 +1,122 @@
+{% extends 'reportes/base.html' %}
+{% load manifest %}
+{% load static %}
+{% block content %}
+    {% block extra_css %}  
+    {% endblock extra_css %}
+<div class="col-md-12">
+    <h3 class="mb-2 text-blue text-center">Ficha de atención</h3> 
+    <div id="formContent">
+        <div class="container container-fluid">
+            <hr>
+            <div class="row" style="border: 1px solid gray; width: 900px; padding-top: 20px; padding-bottom: 10px;">
+                <h6 style="margin-left: 50px; margin-right: 50px;">Nombre del profesional: {{estudiante_data.nombre}}</h6>
+                <h6>Fecha de la evaluación: {{ficha_data.fecha_eval}}</h6>
+            </div>
+            <hr>
+            <h4>Paciente:</h4>
+            <div class="row" style="border: 1px solid gray; width: 900px; padding-top: 10px; padding-bottom: 10px;">
+                <table class="default" style="margin-left: 50px;">
+                    <tr>
+                        <th><label for="nombre_paciente" class="form-label col-form-label-sm" style="width: 340px;">Nombre completo: {{paciente_data.nombre}}</label></th>
+                        <th><label for="rut" class="form-label col-form-label-sm" style="width: 240px;">Rut paciente: {{paciente_data.rut}}- {{paciente_data.dv}}</label></th>
+                        <th><label for="genero" class="form-label col-form-label-sm">Genero: {{paciente_data.genero}}</label></th>
+                    </tr>
+                    <tr>
+                        <td><label for="fecha_nac" class="form-label col-form-label-sm">Fecha nacimiento: {{paciente_data.fecha_nacimiento}}</label></td>
+                        <td><label for="Email" class="form-label col-form-label-sm">Email: {{paciente_data.email}}</label></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <label for="discapacidad_data" class="form-label col-form-label-sm">Discapacidades:</label>
+                            {% for d in discapacidad_data %}
+                            <li>
+                                {{d.nombre}}
+                            </li>
+                            {% endfor %}
+                        </td>
+                        <td>
+                            <label for="disciplina" class="form-label col-form-label-sm">Disciplinas:</label>
+                            {% for d in disciplina_data %}
+                            <li>
+                                {{d.nombre}}
+                            </li>
+                            {% endfor %}
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        <div class="container container-fluid">
+            <hr style="margin-right: 100px;">
+            <h4>Detalle atencion:</h4>
+            <div class="row" style="border: 1px solid gray; width: 900px; padding-top: 10px; padding-bottom: 10px;">
+                <table class="default" style="margin-left: 100px;">
+                    <tr>
+                        <th><label for="estatura" class="form-label col-form-label-sm" style="width: 420px;">Estatura (cm): {{ficha_data.estatura}}</label></th>
+                        <th><label for="peso_prom" class="form-label col-form-label-sm" style="width: 420px;">Peso promedio (kg): {{ficha_data.peso_prom}}</label></th>
+                    </tr>
+                    <tr>
+                        <td><label for="sum_pliegues" class="form-label col-form-label-sm">Sumatoria de pliegues : {{ficha_data.sum_pliegues}}</label></td>
+                        <td><label for="porc_grasa" class="form-label col-form-label-sm">Porcentaje de grasa (%): {{ficha_data.porc_grasa}}</label></td>
+                    </tr>
+                    <tr>
+                        <th><label for="prom_circunferencia_cin" class="form-label col-form-label-sm">Promedio circunferencia cintura  (cm): {{ficha_data.prom_circunferencia_cin}}</label></th>
+                        <th><label for="prom_circunferencia_braq" class="form-label col-form-label-sm">Promedio circunferencia braquial (cm): {{ficha_data.prom_circunferencia_braq}}</label></th>
+                    </tr>
+                    <tr>
+                        <th><label for="prom_pliegue_t" class="form-label col-form-label-sm">Promedio pliegue triciptal (PT) (mm): {{ficha_data.prom_pliegue_t}}</label></th>
+                        <th><label for="prom_pliegue_b" class="form-label col-form-label-sm">Promedio pliegue biciptal (PB) (mm): {{ficha_data.prom_pliegue_b}}</label></th>
+                    </tr>
+                    <tr>
+                        <td><label for="prom_pliegue_se" class="form-label col-form-label-sm">Promedio pliegue subescapular (PSE) (mm): {{ficha_data.prom_pliegue_se}}</label></td>
+                        <td><label for="prom_pliegue_si" class="form-label col-form-label-sm">Promedio pliegue suprailíaco (PSI) (mm): {{ficha_data.prom_pliegue_si}}</label></td>
+                    </tr>
+                </table>
+            </div>
+            <hr style="margin-right: 100px;">
+            <h4>Detalles Adicionales:</h4>
+            <div class="row" style="border: 1px solid gray; width: 900px; padding-top: 10px; padding-bottom: 10px;">
+                <table class="default" style="margin-left: 100px;">
+                    <tr>
+                        <th><label for="prom_pliegue_abd" class="form-label col-form-label-sm" style="width: 420px;">Promedio pliegue abdominal (mm): {{ficha_data.prom_pliegue_abd}}</label></th>
+                        <th><label for="prom_pliegue_pant" class="form-label col-form-label-sm" style="width: 420px;">Promedio pliegue pantorilla (mm): {{ficha_data.prom_pliegue_pant}}</label></th>
+                    </tr>
+                    <tr>
+                        <td><label for="prom_pliegue_media" class="form-label col-form-label-sm">Promedio pliegue medio (mm): {{ficha_data.prom_pliegue_media}}</label></td>
+                        <td><label for="prom_pliegue_supra" class="form-label col-form-label-sm">Promedio pliegue supraespinal (mm): {{ficha_data.prom_pliegue_supra}}</label></td>
+                    </tr>
+                </table>
+            </div>
+            <hr style="margin-right: 100px;">
+            <h4>Diagnostico nutricional:</h4>
+            <div class="row" style="width: 900px; padding-top: 10px; padding-bottom: 10px;">
+                <p style="margin-left: 50px; margin-right: 50px;">{{ficha_data.diag_nutri}}</p>
+            </div>
+            <hr style="border-color: gray; margin-right: 100px;">
+            <h4>Recomendación:</h4>
+            <div class="row" style="width: 900px; padding-top: 10px; padding-bottom: 10px;">
+                <p style="margin-left: 50px; margin-right: 50px;">{{ficha_data.recomendacion}}</p>
+            </div>
+        </div>
+        <hr>
+    </div>
+</div>
+{% endblock %}
+
+<input type="text" >
+<input type="text" class="separadorDecimal">
+
+<script>
+    var separadorDecimal=document.querySelectorAll(".separadorDecimal");
+    for(e of separadorDecimal)
+    {
+        e.addEventListener("keyup",entrada,false);
+    }
+    
+    function entrada(evt)
+    {
+        var res=evt.target.value.replace(/\./g,",");
+        evt.path[0].value=res;
+    }
+</script>

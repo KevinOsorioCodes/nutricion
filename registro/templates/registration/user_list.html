@@ -1,0 +1,101 @@
+{% extends 'paginaweb/base.html' %}
+{% load static %}
+{% load mathfilters %}
+{% block title %}{% endblock %}
+{% block content %}
+    {% block extra_css %}
+    <style>
+        .page-item :active{
+            color: green;
+        }
+    </style>   
+    {% endblock extra_css %}
+    
+    <div class="col-lg-12">
+        <h2 class='h2 medium text-blue'>Listado de {{grupo}}</h2>
+        <div class="d-flex justify-content-end">
+            <form action="" id="buscar" method="post" class='input-container-search'>
+                {% csrf_token %}
+                <input type="search" name="search" id="search" placeholder="Buscar Rol" class='input-container-search'>
+            </form>
+            <input type="submit" value="Buscar" form="buscar" class='button'>
+        </div>
+        <div class="table-responsive table-sm d-flex justify-content-center">
+            <table class="table">
+                <thead style='text-align: center'>
+                    <tr>
+                        <th width="14%" scope="col">id</th>
+                        <th width="12%" scope="col">Nombre</th>
+                        <th width="6%" scope="col">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody style='text-align: center'>
+                    {% for h in h_list_paginate %}
+                        <tr>
+                            <td>{{h.id}}</td>
+                            <td>{{h.nombre}}</td>
+                            <td width="30%">
+                                <a class="btn btn-secondary btn-sm"  href="{% url 'rol_list_tipo' h.id %}">Ver</a>
+                                <a class="btn btn-secondary btn-sm"  href="{% url 'user_del' grupo.id h.id %}">Borrar</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            <!-- Paginación -->
+                {% if paginator.num_pages > 1 %}
+                    <div class="d-flex">
+                        <nav aria-label="Page navigation example" class="ms-auto">
+                            <ul class="pagination pagination-table">
+                                {% if h_list_paginate.has_previous %}
+                                    <li class="page-item">
+                                        <a class="page-link" href="?page={{ h_list_paginate.previous_page_number}}&search={{search}}" aria-label="Previous">
+                                            <span aria-hidden="true">&laquo;</span>
+                                        </a>
+                                    </li>
+                                {% else %}
+                                    <li class="page-item disabled">
+                                        <a class="page-link" href="#" tabindex="-1">&laquo;</a>
+                                    </li>                        
+                                {% endif %}
+
+                                {% for i in paginator.page_range %}
+                                    {% if i >= page|sub:2 and page|add:2 >= i %}
+                                        <li class="page-item {% if h_list_paginate.number == i %}active{% endif %}">
+                                            <a class="page-link" href="?page={{ i }}&search={{search}}">{{ i }}</a>
+                                        </li>  
+                                    {% elif h_list_paginate.number == i %}
+                                        <li class="page-item {% if h_list_paginate.number == i %}active{% endif %}">
+                                            <a class="page-link" href="?page={{ i }}&search={{search}}">{{ i }}</a>
+                                        </li>
+                                        {% if h_list_paginate.number == 1 %}
+                                            <li class="page-item {% if h_list_paginate.number == i|add:1 %}{% endif %}">
+                                                <a class="page-link" href="?page={{ i|add:1 }}&search={{search}}">{{ i|add:1 }}</a>
+                                            </li>
+                                        {% endif %}
+                                    {% endif %}
+                                {% endfor %}
+                                
+                                {% if h_list_paginate.has_next %}
+                                    <li class="page-item ">
+                                        <a class="page-link" href="?page={{ h_list_paginate.next_page_number }}&search={{search}}">&raquo;</a>
+                                    </li>
+                                {% else %}
+                                    <li class="page-item disabled">
+                                        <a class="page-link" href="#" tabindex="-1">&raquo;</a>
+                                    </li>
+                                {% endif %}
+                            </ul>
+                        </nav>
+                    </div>
+                {% endif %}  
+            <!-- Paginación -->    
+        </div>
+        <div class="mb-3">
+            <span class="d-flex justify-content-center"><a href="{% url 'user_add' grupo.id  %}" class="button">Crear usuario</a></span>
+            <a href="{% url 'rol_list' %}" class="float-end button">Regresar</a>  
+        </div>
+    </div>
+    {% block extrajs %}    
+    {% endblock extrajs %}    
+{% endblock %}

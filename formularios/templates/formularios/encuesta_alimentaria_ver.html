@@ -1,0 +1,525 @@
+{% extends 'paginaweb/base.html' %}
+{% load manifest %}
+{% load static %}
+{% block content %}
+    {% block extra_css %}  
+    {% endblock extra_css %}
+<div class="col-md-12">
+    <p id="profile_title" class="mb-2 text-blue text-center">Inicio > Administrar fichas > {{paciente_data.nombre}} > Ver encuesta alimentaria</p>
+    <h2 class='h2 medium' id="food-title">Ver encuesta alimentaria</h2>
+    <form id="food-ver" method="post" action="">{% csrf_token %}
+        <h6 class='h6 medium'>Pan Corriente</h6>
+        <div class="col-sm" id="food-infos"> 
+            <label style="font-size:17px" class="form-label col-form-label-sm">Frecuencia: {{formulario_array.0.frecuencia}}</label>
+            <div class="food-container">
+                <label class="form-label col-form-label-sm">Cantidad</label>
+                <input type="number" step="1" class="form-control form-control-sm" name="cantidad-0" id="cantidad-ver" value={{formulario_array.0.cantidad}} required readonly>
+            </div>
+        </div>
+        <div class="row" id="comments">
+            <div class="col-8" id="comments-input">
+                <label class="form-label col-form-label-sm">Comentarios - (¿Por qué lo consumes?, ¿Marca de producto?, ¿Dónde lo compras?, etc).</label>
+                <textarea name="comentario-0" id="comentario" class="form-control form-control-sm" rows="3" cols="30" readonly>{{formulario_array.0.comentario}}</textarea>
+            </div>
+        </div>
+        <hr>
+        <h6 class='h6 medium'>Pan integral</h6>
+        <div class="col-sm" id="food-infos"> 
+            <label style="font-size:17px" class="form-label col-form-label-sm">Frecuencia: {{formulario_array.1.frecuencia}}</label>
+            <div class="food-container">
+                <label class="form-label col-form-label-sm">Cantidad</label>
+                <input type="number" step="1" class="form-control form-control-sm" name="cantidad-1" id="cantidad-ver" value={{formulario_array.1.cantidad}} required readonly>
+            </div>
+        </div>
+        <div class="row" id="comments">
+            <div class="col-8" id="comments-input">
+                <label class="form-label col-form-label-sm">Comentarios - (¿Por qué lo consumes?, ¿Marca de producto?, ¿Dónde lo compras?, etc).</label>
+                <textarea name="comentario-1" id="comentario" class="form-control form-control-sm" rows="3" cols="30" readonly>{{formulario_array.1.comentario}}</textarea>
+            </div>
+        </div>
+        <hr>
+        <h6 class='h6 medium'>Arroz</h6>
+        <div class="col-sm" id="food-infos"> 
+            <label style="font-size:17px" class="form-label col-form-label-sm">Frecuencia: {{formulario_array.2.frecuencia}}</label>
+            <div class="food-container">
+                <label class="form-label col-form-label-sm">Cantidad</label>
+                <input type="number" step="1" class="form-control form-control-sm" name="cantidad-2" id="cantidad-ver" value={{formulario_array.2.cantidad}} required readonly>
+            </div>
+        </div>
+        <div class="row" id="comments">
+            <div class="col-8" id="comments-input">
+                <label class="form-label col-form-label-sm">Comentarios - (¿Por qué lo consumes?, ¿Marca de producto?, ¿Dónde lo compras?, etc).</label>
+                <textarea name="comentario-2" id="comentario" class="form-control form-control-sm" rows="3" cols="30" readonly>{{formulario_array.2.comentario}}</textarea>
+            </div>
+        </div>
+        <hr>
+        <h6 class='h6 medium'>Pastas</h6>
+        <div class="col-sm" id="food-infos"> 
+            <label style="font-size:17px" class="form-label col-form-label-sm">Frecuencia: {{formulario_array.3.frecuencia}}</label>
+            <div class="food-container">
+                <label class="form-label col-form-label-sm">Cantidad</label>
+                <input type="number" step="1" class="form-control form-control-sm" name="cantidad-3" id="cantidad-ver" value={{formulario_array.3.cantidad}} required readonly>
+            </div>
+        </div>
+        <div class="row" id="comments">
+            <div class="col-8" id="comments-input">
+                <label class="form-label col-form-label-sm">Comentarios - (¿Por qué lo consumes?, ¿Marca de producto?, ¿Dónde lo compras?, etc).</label>
+                <textarea name="comentario-3" id="comentario" class="form-control form-control-sm" rows="3" cols="30"readonly>{{formulario_array.3.comentario}}</textarea>
+            </div>
+        </div>
+        <hr>
+        <h6 class='h6 medium'>Legumbres</h6>
+        <div class="col-sm" id="food-infos"> 
+            <label style="font-size:17px" class="form-label col-form-label-sm">Frecuencia: {{formulario_array.4.frecuencia}}</label>
+            <div class="food-container">
+                <label class="form-label col-form-label-sm">Cantidad</label>
+                <input type="number" step="1" class="form-control form-control-sm" name="cantidad-4" id="cantidad-ver" value={{formulario_array.4.cantidad}} required readonly>
+            </div>
+        </div>
+        <div class="row" id="comments">
+            <div class="col-8" id="comments-input">
+                <label class="form-label col-form-label-sm">Comentarios - (¿Por qué lo consumes?, ¿Marca de producto?, ¿Dónde lo compras?, etc).</label>
+                <textarea name="comentario-4" id="comentario" class="form-control form-control-sm" rows="3" cols="30" readonly>{{formulario_array.4.comentario}}</textarea>
+            </div>
+        </div>
+        <hr>
+        <h6 class='h6 medium'>Papas cocidas</h6>
+        <div class="col-sm" id="food-infos"> 
+            <label style="font-size:17px" class="form-label col-form-label-sm">Frecuencia: {{formulario_array.5.frecuencia}}</label>
+            <div class="food-container">
+                <label class="form-label col-form-label-sm">Cantidad</label>
+                <input type="number" step="1" class="form-control form-control-sm" name="cantidad-5" id="cantidad-ver" value={{formulario_array.5.cantidad}} required readonly>
+            </div>
+        </div>
+        <div class="row" id="comments">
+            <div class="col-8" id="comments-input">
+                <label class="form-label col-form-label-sm">Comentarios - (¿Por qué lo consumes?, ¿Marca de producto?, ¿Dónde lo compras?, etc).</label>
+                <textarea name="comentario-5" id="comentario" class="form-control form-control-sm" rows="3" cols="30" readonly>{{formulario_array.5.comentario}}</textarea>
+            </div>
+        </div>
+        <hr>
+        <h6 class='h6 medium'>Papas fritas</h6>
+        <div class="col-sm" id="food-infos"> 
+            <label style="font-size:17px" class="form-label col-form-label-sm">Frecuencia: {{formulario_array.6.frecuencia}}</label>
+            <div class="food-container">
+                <label class="form-label col-form-label-sm">Cantidad</label>
+                <input type="number" step="1" class="form-control form-control-sm" name="cantidad-6" id="cantidad-ver" value={{formulario_array.6.cantidad}} required readonly>
+            </div>
+        </div>
+        <div class="row" id="comments">
+            <div class="col-8" id="comments-input">
+                <label class="form-label col-form-label-sm">Comentarios - (¿Por qué lo consumes?, ¿Marca de producto?, ¿Dónde lo compras?, etc).</label>
+                <textarea name="comentario-6" id="comentario" class="form-control form-control-sm" rows="3" cols="30" readonly>{{formulario_array.6.comentario}}</textarea>
+            </div>
+        </div>
+        <hr>
+        <h6 class='h6 medium'>Choclo</h6>
+        <div class="col-sm" id="food-infos"> 
+            <label style="font-size:17px" class="form-label col-form-label-sm">Frecuencia: {{formulario_array.7.frecuencia}}</label>
+            <div class="food-container">
+                <label class="form-label col-form-label-sm">Cantidad</label>
+                <input type="number" step="1" class="form-control form-control-sm" name="cantidad-7" id="cantidad-ver" value={{formulario_array.7.cantidad}} required readonly>
+            </div>
+        </div>
+        <div class="row" id="comments">
+            <div class="col-8" id="comments-input">
+                <label class="form-label col-form-label-sm">Comentarios - (¿Por qué lo consumes?, ¿Marca de producto?, ¿Dónde lo compras?, etc).</label>
+                <textarea name="comentario-7" id="comentario" class="form-control form-control-sm" rows="3" cols="30" readonly>{{formulario_array.7.comentario}}</textarea>
+            </div>
+        </div>
+        <hr>
+        <h6 class='h6 medium'>Verduras</h6>
+        <div class="col-sm" id="food-infos"> 
+            <label style="font-size:17px" class="form-label col-form-label-sm">Frecuencia: {{formulario_array.8.frecuencia}}</label>
+            <div class="food-container">
+                <label class="form-label col-form-label-sm">Cantidad</label>
+                <input type="number" step="1" class="form-control form-control-sm" name="cantidad-8" id="cantidad-ver" value={{formulario_array.8.cantidad}} required readonly>
+            </div>
+        </div>
+        <div class="row" id="comments">
+            <div class="col-8" id="comments-input">
+                <label class="form-label col-form-label-sm">Comentarios - (¿Por qué lo consumes?, ¿Marca de producto?, ¿Dónde lo compras?, etc).</label>
+                <textarea name="comentario-8" id="comentario" class="form-control form-control-sm" rows="3" cols="30" readonly>{{formulario_array.8.comentario}}</textarea>
+            </div>
+        </div>
+        <hr>
+        <h6 class='h6 medium'>Fruta</h6>
+        <div class="col-sm" id="food-infos"> 
+            <label style="font-size:17px" class="form-label col-form-label-sm">Frecuencia: {{formulario_array.9.frecuencia}}</label>
+            <div class="food-container">
+                <label class="form-label col-form-label-sm">Cantidad</label>
+                <input type="number" step="1" class="form-control form-control-sm" name="cantidad-9" id="cantidad-ver" value={{formulario_array.9.cantidad}} required readonly>
+            </div>
+        </div>
+        <div class="row" id="comments">
+            <div class="col-8" id="comments-input">
+                <label class="form-label col-form-label-sm">Comentarios - (¿Por qué lo consumes?, ¿Marca de producto?, ¿Dónde lo compras?, etc).</label>
+                <textarea name="comentario-9" id="comentario" class="form-control form-control-sm" rows="3" cols="30" readonly>{{formulario_array.9.comentario}}</textarea>
+            </div>
+        </div>
+        <hr>
+        <h6 class='h6 medium'>Carne de cerdo</h6>
+        <div class="col-sm" id="food-infos"> 
+            <label style="font-size:17px" class="form-label col-form-label-sm">Frecuencia: {{formulario_array.10.frecuencia}}</label>
+            <div class="food-container">
+                <label class="form-label col-form-label-sm">Cantidad</label>
+                <input type="number" step="1" class="form-control form-control-sm" name="cantidad-10" id="cantidad-ver" value={{formulario_array.10.cantidad}} required readonly>
+            </div>
+        </div>
+        <div class="row" id="comments">
+            <div class="col-8" id="comments-input">
+                <label class="form-label col-form-label-sm">Comentarios - (¿Por qué lo consumes?, ¿Marca de producto?, ¿Dónde lo compras?, etc).</label>
+                <textarea name="comentario-10" id="comentario" class="form-control form-control-sm" rows="3" cols="30" readonly>{{formulario_array.10.comentario}}</textarea>
+            </div>
+        </div>
+        <hr>
+        <h6 class='h6 medium'>Carne de ave y pavo</h6>
+        <div class="col-sm" id="food-infos"> 
+            <label style="font-size:17px" class="form-label col-form-label-sm">Frecuencia: {{formulario_array.11.frecuencia}}</label>
+            <div class="food-container">
+                <label class="form-label col-form-label-sm">Cantidad</label>
+                <input type="number" step="1" class="form-control form-control-sm" name="cantidad-11" id="cantidad-ver" value={{formulario_array.11.cantidad}} required readonly>
+            </div>
+        </div>
+        <div class="row" id="comments">
+            <div class="col-8" id="comments-input">
+                <label class="form-label col-form-label-sm">Comentarios - (¿Por qué lo consumes?, ¿Marca de producto?, ¿Dónde lo compras?, etc).</label>
+                <textarea name="comentario-11" id="comentario" class="form-control form-control-sm" rows="3" cols="30" readonly>{{formulario_array.11.comentario}}</textarea>
+            </div>
+        </div>
+        <hr>
+        <h6 class='h6 medium'>Carne de vacuno</h6>
+        <div class="col-sm" id="food-infos"> 
+            <label style="font-size:17px" class="form-label col-form-label-sm">Frecuencia: {{formulario_array.12.frecuencia}}</label>
+            <div class="food-container">
+                <label class="form-label col-form-label-sm">Cantidad</label>
+                <input type="number" step="1" class="form-control form-control-sm" name="cantidad-12" id="cantidad-ver" value={{formulario_array.12.cantidad}} required readonly>
+            </div>
+        </div>
+        <div class="row" id="comments">
+            <div class="col-8" id="comments-input">
+                <label class="form-label col-form-label-sm">Comentarios - (¿Por qué lo consumes?, ¿Marca de producto?, ¿Dónde lo compras?, etc).</label>
+                <textarea name="comentario-12" id="comentario" class="form-control form-control-sm" rows="3" cols="30" readonly>{{formulario_array.12.comentario}}</textarea>
+            </div>
+        </div>
+        <hr>
+        <h6 class='h6 medium'>Pescados</h6>
+        <div class="col-sm" id="food-infos"> 
+            <label style="font-size:17px" class="form-label col-form-label-sm">Frecuencia: {{formulario_array.13.frecuencia}}</label>
+            <div class="food-container">
+                <label class="form-label col-form-label-sm">Cantidad</label>
+                <input type="number" step="1" class="form-control form-control-sm" name="cantidad-13" id="cantidad-ver" value={{formulario_array.13.cantidad}} required readonly>
+            </div>
+        </div>
+        <div class="row" id="comments">
+            <div class="col-8" id="comments-input">
+                <label class="form-label col-form-label-sm">Comentarios - (¿Por qué lo consumes?, ¿Marca de producto?, ¿Dónde lo compras?, etc).</label>
+                <textarea name="comentario-13" id="comentario" class="form-control form-control-sm" rows="3" cols="30" readonly>{{formulario_array.13.comentario}}</textarea>
+            </div>
+        </div>
+        <hr>
+        <h6 class='h6 medium'>Mariscos</h6>
+        <div class="col-sm" id="food-infos"> 
+            <label style="font-size:17px" class="form-label col-form-label-sm">Frecuencia: {{formulario_array.14.frecuencia}}</label>
+            <div class="food-container">
+                <label class="form-label col-form-label-sm">Cantidad</label>
+                <input type="number" step="1" class="form-control form-control-sm" name="cantidad-14" id="cantidad-ver" value={{formulario_array.14.cantidad}} required readonly>
+            </div>
+        </div>
+        <div class="row" id="comments">
+            <div class="col-8" id="comments-input">
+                <label class="form-label col-form-label-sm">Comentarios - (¿Por qué lo consumes?, ¿Marca de producto?, ¿Dónde lo compras?, etc).</label>
+                <textarea name="comentario-14" id="comentario" class="form-control form-control-sm" rows="3" cols="30" readonly>{{formulario_array.14.comentario}}</textarea>
+            </div>
+        </div>
+        <hr>
+        <h6 class='h6 medium'>Huevos</h6>
+        <div class="col-sm" id="food-infos"> 
+            <label style="font-size:17px" class="form-label col-form-label-sm">Frecuencia: {{formulario_array.15.frecuencia}}</label>
+            <div class="food-container">
+                <label class="form-label col-form-label-sm">Cantidad</label>
+                <input type="number" step="1" class="form-control form-control-sm" name="cantidad-15" id="cantidad-ver" value={{formulario_array.15.cantidad}} required readonly>
+            </div>
+        </div>
+        <div class="row" id="comments">
+            <div class="col-8" id="comments-input">
+                <label class="form-label col-form-label-sm">Comentarios - (¿Por qué lo consumes?, ¿Marca de producto?, ¿Dónde lo compras?, etc).</label>
+                <textarea name="comentario-15" id="comentario" class="form-control form-control-sm" rows="3" cols="30" readonly>{{formulario_array.15.comentario}}</textarea>
+            </div>
+        </div>
+        <hr>
+        <h6 class='h6 medium'>Leche entera</h6>
+        <div class="col-sm" id="food-infos"> 
+            <label style="font-size:17px" class="form-label col-form-label-sm">Frecuencia: {{formulario_array.16.frecuencia}}</label>
+            <div class="food-container">
+                <label class="form-label col-form-label-sm">Cantidad</label>
+                <input type="number" step="1" class="form-control form-control-sm" name="cantidad-16" id="cantidad-ver" value={{formulario_array.16.cantidad}} required readonly>
+            </div>
+        </div>
+        <div class="row" id="comments">
+            <div class="col-8" id="comments-input">
+                <label class="form-label col-form-label-sm">Comentarios - (¿Por qué lo consumes?, ¿Marca de producto?, ¿Dónde lo compras?, etc).</label>
+                <textarea name="comentario-16" id="comentario" class="form-control form-control-sm" rows="3" cols="30" readonly>{{formulario_array.16.comentario}}</textarea>
+            </div>
+        </div>
+        <hr>
+        <h6 class='h6 medium'>Leche semi-descremada</h6>
+        <div class="col-sm" id="food-infos"> 
+            <label style="font-size:17px" class="form-label col-form-label-sm">Frecuencia: {{formulario_array.17.frecuencia}}</label>
+            <div class="food-container">
+                <label class="form-label col-form-label-sm">Cantidad</label>
+                <input type="number" step="1" class="form-control form-control-sm" name="cantidad-17" id="cantidad-ver" value={{formulario_array.17.cantidad}} required readonly>
+            </div>
+        </div>
+        <div class="row" id="comments">
+            <div class="col-8" id="comments-input">
+                <label class="form-label col-form-label-sm">Comentarios - (¿Por qué lo consumes?, ¿Marca de producto?, ¿Dónde lo compras?, etc).</label>
+                <textarea name="comentario-17" id="comentario" class="form-control form-control-sm" rows="3" cols="30" readonly>{{formulario_array.17.comentario}}</textarea>
+            </div>
+        </div>
+        <hr>
+        <h6 class='h6 medium'>Leche descremada</h6>
+        <div class="col-sm" id="food-infos"> 
+            <label style="font-size:17px" class="form-label col-form-label-sm">Frecuencia: {{formulario_array.18.frecuencia}}</label>
+            <div class="food-container">
+                <label class="form-label col-form-label-sm">Cantidad</label>
+                <input type="number" step="1" class="form-control form-control-sm" name="cantidad-18" id="cantidad-ver" value={{formulario_array.18.cantidad}} required readonly>
+            </div>
+        </div>
+        <div class="row" id="comments">
+            <div class="col-8" id="comments-input">
+                <label class="form-label col-form-label-sm">Comentarios - (¿Por qué lo consumes?, ¿Marca de producto?, ¿Dónde lo compras?, etc).</label>
+                <textarea name="comentario-18" id="comentario" class="form-control form-control-sm" rows="3" cols="30" readonly>{{formulario_array.18.comentario}}</textarea>
+            </div>
+        </div>
+        <hr>
+        <h6 class='h6 medium'>Yogurt</h6>
+        <div class="col-sm" id="food-infos"> 
+            <label style="font-size:17px" class="form-label col-form-label-sm">Frecuencia: {{formulario_array.19.frecuencia}}</label>
+            <div class="food-container">
+                <label class="form-label col-form-label-sm">Cantidad</label>
+                <input type="number" step="1" class="form-control form-control-sm" name="cantidad-19" id="cantidad-ver" value={{formulario_array.19.cantidad}} required readonly>
+            </div>
+        </div>
+        <div class="row" id="comments">
+            <div class="col-8" id="comments-input">
+                <label class="form-label col-form-label-sm">Comentarios - (¿Por qué lo consumes?, ¿Marca de producto?, ¿Dónde lo compras?, etc).</label>
+                <textarea name="comentario-19" id="comentario" class="form-control form-control-sm" rows="3" cols="30" readonly>{{formulario_array.19.comentario}}</textarea>
+            </div>
+        </div>
+        <hr>
+        <h6 class='h6 medium'>Quesos amarillos</h6>
+        <div class="col-sm" id="food-infos"> 
+            <label style="font-size:17px" class="form-label col-form-label-sm">Frecuencia: {{formulario_array.20.frecuencia}}</label>
+            <div class="food-container">
+                <label class="form-label col-form-label-sm">Cantidad</label>
+                <input type="number" step="1" class="form-control form-control-sm" name="cantidad-20" id="cantidad-ver" value={{formulario_array.20.cantidad}} required readonly>
+            </div>
+        </div>
+        <div class="row" id="comments">
+            <div class="col-8" id="comments-input">
+                <label class="form-label col-form-label-sm">Comentarios - (¿Por qué lo consumes?, ¿Marca de producto?, ¿Dónde lo compras?, etc).</label>
+                <textarea name="comentario-20" id="comentario" class="form-control form-control-sm" rows="3" cols="30" readonly>{{formulario_array.20.comentario}}</textarea>
+            </div>
+        </div>
+        <hr>
+        <h6 class='h6 medium'>Queso chacra o Quesillo</h6>
+        <div class="col-sm" id="food-infos"> 
+            <label style="font-size:17px" class="form-label col-form-label-sm">Frecuencia: {{formulario_array.21.frecuencia}}</label>
+            <div class="food-container">
+                <label class="form-label col-form-label-sm">Cantidad</label>
+                <input type="number" step="1" class="form-control form-control-sm" name="cantidad-21" id="cantidad-ver" value={{formulario_array.21.cantidad}} required readonly>
+            </div>
+        </div>
+        <div class="row" id="comments">
+            <div class="col-8" id="comments-input">
+                <label class="form-label col-form-label-sm">Comentarios - (¿Por qué lo consumes?, ¿Marca de producto?, ¿Dónde lo compras?, etc).</label>
+                <textarea name="comentario-21" id="comentario" class="form-control form-control-sm" rows="3" cols="30" readonly>{{formulario_array.21.comentario}}</textarea>
+            </div>
+        </div>
+        <hr>
+        <h6 class='h6 medium'>Aceite</h6>
+        <div class="col-sm" id="food-infos"> 
+            <label style="font-size:17px" class="form-label col-form-label-sm">Frecuencia: {{formulario_array.22.frecuencia}}</label>
+            <div class="food-container">
+                <label class="form-label col-form-label-sm">Cantidad</label>
+                <input type="number" step="1" class="form-control form-control-sm" name="cantidad-22" id="cantidad-ver" value={{formulario_array.22.cantidad}} required readonly>
+            </div>
+        </div>
+        <div class="row" id="comments">
+            <div class="col-8" id="comments-input">
+                <label class="form-label col-form-label-sm">Comentarios - (¿Por qué lo consumes?, ¿Marca de producto?, ¿Dónde lo compras?, etc).</label>
+                <textarea name="comentario-22" id="comentario" class="form-control form-control-sm" rows="3" cols="30" readonly>{{formulario_array.22.comentario}}</textarea>
+            </div>
+        </div>
+        <hr>
+        <h6 class='h6 medium'>Aceite de oliva</h6>
+        <div class="col-sm" id="food-infos"> 
+            <label style="font-size:17px" class="form-label col-form-label-sm">Frecuencia: {{formulario_array.23.frecuencia}}</label>
+            <div class="food-container">
+                <label class="form-label col-form-label-sm">Cantidad</label>
+                <input type="number" step="1" class="form-control form-control-sm" name="cantidad-23" id="cantidad-ver" value={{formulario_array.23.cantidad}} required readonly>
+            </div>
+        </div>
+        <div class="row" id="comments">
+            <div class="col-8" id="comments-input">
+                <label class="form-label col-form-label-sm">Comentarios - (¿Por qué lo consumes?, ¿Marca de producto?, ¿Dónde lo compras?, etc).</label>
+                <textarea name="comentario-23" id="comentario" class="form-control form-control-sm" rows="3" cols="30" readonly>{{formulario_array.23.comentario}}</textarea>
+            </div>
+        </div>
+        <hr>
+        <h6 class='h6 medium'>Embutidos</h6>
+        <div class="col-sm" id="food-infos"> 
+            <label style="font-size:17px" class="form-label col-form-label-sm">Frecuencia: {{formulario_array.24.frecuencia}}</label>
+            <div class="food-container">
+                <label class="form-label col-form-label-sm">Cantidad</label>
+                <input type="number" step="1" class="form-control form-control-sm" name="cantidad-24" id="cantidad-ver" value={{formulario_array.24.cantidad}} required readonly>
+            </div>
+        </div>
+        <div class="row" id="comments">
+            <div class="col-8" id="comments-input">
+                <label class="form-label col-form-label-sm">Comentarios - (¿Por qué lo consumes?, ¿Marca de producto?, ¿Dónde lo compras?, etc).</label>
+                <textarea name="comentario-24" id="comentario" class="form-control form-control-sm" rows="3" cols="30" readonly>{{formulario_array.24.comentario}}</textarea>
+            </div>
+        </div>
+        <hr>
+        <h6 class='h6 medium'>Cecinas</h6>
+        <div class="col-sm" id="food-infos"> 
+            <label style="font-size:17px" class="form-label col-form-label-sm">Frecuencia: {{formulario_array.25.frecuencia}}</label>
+            <div class="food-container">
+                <label class="form-label col-form-label-sm">Cantidad</label>
+                <input type="number" step="1" class="form-control form-control-sm" name="cantidad-25" id="cantidad-ver" value={{formulario_array.25.cantidad}} required readonly>
+            </div>
+        </div>
+        <div class="row" id="comments">
+            <div class="col-8" id="comments-input">
+                <label class="form-label col-form-label-sm">Comentarios - (¿Por qué lo consumes?, ¿Marca de producto?, ¿Dónde lo compras?, etc).</label>
+                <textarea name="comentario-25" id="comentario" class="form-control form-control-sm" rows="3" cols="30" readonly>{{formulario_array.25.comentario}}</textarea>
+            </div>
+        </div>
+        <hr>
+        <h6 class='h6 medium'>Enlatados o conservas</h6>
+        <div class="col-sm" id="food-infos"> 
+            <label style="font-size:17px" class="form-label col-form-label-sm">Frecuencia: {{formulario_array.26.frecuencia}}</label>
+            <div class="food-container">
+                <label class="form-label col-form-label-sm">Cantidad</label>
+                <input type="number" step="1" class="form-control form-control-sm" name="cantidad-26" id="cantidad-ver" value={{formulario_array.26.cantidad}} required readonly>
+            </div>
+        </div>
+        <div class="row" id="comments">
+            <div class="col-8" id="comments-input">
+                <label class="form-label col-form-label-sm">Comentarios - (¿Por qué lo consumes?, ¿Marca de producto?, ¿Dónde lo compras?, etc).</label>
+                <textarea name="comentario-26" id="comentario" class="form-control form-control-sm" rows="3" cols="30" readonly>{{formulario_array.26.comentario}}</textarea>
+            </div>
+        </div>
+        <hr>
+        <h6 class='h6 medium'>Pasteles</h6>
+        <div class="col-sm" id="food-infos"> 
+            <label style="font-size:17px" class="form-label col-form-label-sm">Frecuencia: {{formulario_array.27.frecuencia}}</label>
+            <div class="food-container">
+                <label class="form-label col-form-label-sm">Cantidad</label>
+                <input type="number" step="1" class="form-control form-control-sm" name="cantidad-27" id="cantidad-ver" value={{formulario_array.27.cantidad}} required readonly>
+            </div>
+        </div>
+        <div class="row" id="comments">
+            <div class="col-8" id="comments-input">
+                <label class="form-label col-form-label-sm">Comentarios - (¿Por qué lo consumes?, ¿Marca de producto?, ¿Dónde lo compras?, etc).</label>
+                <textarea name="comentario-27" id="comentario" class="form-control form-control-sm" rows="3" cols="30" readonly>{{formulario_array.27.comentario}}</textarea>
+            </div>
+        </div>
+        <hr>
+        <h6 class='h6 medium'>Snack salados</h6>
+        <div class="col-sm" id="food-infos"> 
+            <label style="font-size:17px" class="form-label col-form-label-sm">Frecuencia: {{formulario_array.28.frecuencia}}</label>
+            <div class="food-container">
+                <label class="form-label col-form-label-sm">Cantidad</label>
+                <input type="number" step="1" class="form-control form-control-sm" name="cantidad-28" id="cantidad-ver" value={{formulario_array.28.cantidad}} required readonly>
+            </div>
+        </div>
+        <div class="row" id="comments">
+            <div class="col-8" id="comments-input">
+                <label class="form-label col-form-label-sm">Comentarios - (¿Por qué lo consumes?, ¿Marca de producto?, ¿Dónde lo compras?, etc).</label>
+                <textarea name="comentario-28" id="comentario" class="form-control form-control-sm" rows="3" cols="30" readonly>{{formulario_array.28.comentario}}</textarea>
+            </div>
+        </div>
+        <hr>
+        <h6 class='h6 medium'>Snack dulces</h6>
+        <div class="col-sm" id="food-infos"> 
+            <label style="font-size:17px" class="form-label col-form-label-sm">Frecuencia: {{formulario_array.29.frecuencia}}</label>
+            <div class="food-container">
+                <label class="form-label col-form-label-sm">Cantidad</label>
+                <input type="number" step="1" class="form-control form-control-sm" name="cantidad-29" id="cantidad-ver" value={{formulario_array.29.cantidad}} required readonly>
+            </div>
+        </div>
+        <div class="row" id="comments">
+            <div class="col-8" id="comments-input">
+                <label class="form-label col-form-label-sm">Comentarios - (¿Por qué lo consumes?, ¿Marca de producto?, ¿Dónde lo compras?, etc).</label>
+                <textarea name="comentario-29" id="comentario" class="form-control form-control-sm" rows="3" cols="30" readonly>{{formulario_array.29.comentario}}</textarea>
+            </div>
+        </div>
+        <hr>
+        <h6 class='h6 medium'>Azúcar</h6>
+        <div class="col-sm" id="food-infos"> 
+            <label style="font-size:17px" class="form-label col-form-label-sm">Frecuencia: {{formulario_array.30.frecuencia}}</label>
+            <div class="food-container">
+                <label class="form-label col-form-label-sm">Cantidad</label>
+                <input type="number" step="1" class="form-control form-control-sm" name="cantidad-30" id="cantidad-ver" value={{formulario_array.30.cantidad}} required readonly>
+            </div>
+        </div>
+        <div class="row" id="comments">
+            <div class="col-8" id="comments-input">
+                <label class="form-label col-form-label-sm">Comentarios - (¿Por qué lo consumes?, ¿Marca de producto?, ¿Dónde lo compras?, etc).</label>
+                <textarea name="comentario-30" id="comentario" class="form-control form-control-sm" rows="3" cols="30" readonly>{{formulario_array.30.comentario}}</textarea>
+            </div>
+        </div>
+        <hr>
+        <h6 class='h6 medium'>Sal</h6>
+        <div class="col-sm" id="food-infos"> 
+            <label style="font-size:17px" class="form-label col-form-label-sm">Frecuencia: {{formulario_array.31.frecuencia}}</label>
+            <div class="food-container">
+                <label class="form-label col-form-label-sm">Cantidad</label>
+                <input type="number" step="1" class="form-control form-control-sm" name="cantidad-31" id="cantidad-ver" value={{formulario_array.31.cantidad}} required readonly>
+            </div>
+        </div>
+        <div class="row" id="comments">
+            <div class="col-8" id="comments-input">
+                <label class="form-label col-form-label-sm">Comentarios - (¿Por qué lo consumes?, ¿Marca de producto?, ¿Dónde lo compras?, etc).</label>
+                <textarea name="comentario-31" id="comentario" class="form-control form-control-sm" rows="3" cols="30" readonly>{{formulario_array.31.comentario}}</textarea>
+            </div>
+        </div>
+        <hr>
+        <h6 class='h6 medium'>Bebida azúcaras</h6>
+        <div class="col-sm" id="food-infos"> 
+            <label style="font-size:17px" class="form-label col-form-label-sm">Frecuencia: {{formulario_array.32.frecuencia}}</label>
+            <div class="food-container">
+                <label class="form-label col-form-label-sm">Cantidad</label>
+                <input type="number" step="1" class="form-control form-control-sm" name="cantidad-32" id="cantidad-ver" value={{formulario_array.32.cantidad}} required readonly>
+            </div>
+        </div>
+        <div class="row" id="comments">
+            <div class="col-8" id="comments-input">
+                <label class="form-label col-form-label-sm">Comentarios - (¿Por qué lo consumes?, ¿Marca de producto?, ¿Dónde lo compras?, etc).</label>
+                <textarea name="comentario-32" id="comentario" class="form-control form-control-sm" rows="3" cols="30" readonly>{{formulario_array.32.comentario}}</textarea>
+            </div>
+        </div>
+        <hr>
+        <h6 class='h6 medium'>Otro que no aparezca</h6>
+        <div class="col-sm" id="food-infos"> 
+            <label style="font-size:17px" class="form-label col-form-label-sm">Frecuencia: {{formulario_array.33.frecuencia}}</label>
+            <div class="food-container">
+                <label class="form-label col-form-label-sm">Cantidad</label>
+                <input type="number" step="1" class="form-control form-control-sm" name="cantidad-33" id="cantidad-ver" value={{formulario_array.33.cantidad}} required readonly>
+            </div>
+        </div>
+        <div class="row" id="comments">
+            <div class="col-8" id="comments-input">
+                <label class="form-label col-form-label-sm">Comentarios - (¿Por qué lo consumes?, ¿Marca de producto?, ¿Dónde lo compras?, etc).</label>
+                <textarea name="comentario-33" id="comentario" class="form-control form-control-sm" rows="3" cols="30" readonly>{{formulario_array.33.comentario}}</textarea>
+            </div>
+        </div>
+        <div id="al-buttons">
+            <a href="{% url 'ficha_paciente_list' paciente_id %}" id="list-return-page" class="button">Regresa</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

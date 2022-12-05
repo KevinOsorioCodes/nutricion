@@ -1,0 +1,136 @@
+{% extends 'paginaweb/base.html' %}
+{% load manifest %}
+{% load static %}
+{% block content %}
+    {% block extra_css %}    
+    {% endblock extra_css %}
+<div class="col-md-6 borde">
+    <h3 class="mb-2 text-blue text-center">Añadir {{grupo.name}}</h3>
+    {% if messages %}
+        <ul class="messagelist text-success">{% for message in messages %}<li>{{ message }}</li>{% endfor %}</ul>
+    {% endif %}
+    <div class="mb-3">
+        <button onclick="addInput()" class="button float-start">Añadir</button>
+        <button onclick="deleteInput()" class="button float-end">Borrar</button>
+    </div>
+   
+    <form method="post" action="{% url 'user_save' grupo.id %}">{% csrf_token %}
+        <div class="mb-3 col-3">
+            <input type="text" class="form-control form-control-sm" value="1" name="cantidad" id="cantidad" readonly required>
+        </div>
+        <hr>
+        <div id="formContent">
+            <label for="nombre-1" class="form-label col-form-label-sm">Nombre completo:</label>
+            <input type="text" class="form-control form-control-sm" name="nombre-1" id="nombre-1" placeholder="Nombre(s) Apellido(s)" required>
+            <label for="email-1" class="form-label col-form-label-sm">Email alumno:</label>
+            <input type="email" class="form-control form-control-sm" name="email-1" id="email-1" placeholder="autonoma@correo.com" required>
+            <div class="row">
+                <div class="col-9">
+                    <label for="rut-1" class="form-label col-form-label-sm">Rut alumno:</label>
+                    <input type="text" class="form-control form-control-sm" name="rut-1" id="rut-1" placeholder="12345678" required>
+                </div>
+                <div class="col-3">
+                    <label for="dv-1" class="form-label col-form-label-sm">DV:</label>
+                    <input type="text" class="form-control form-control-sm" name="dv-1" id="dv-1" placeholder="K" required>
+                </div>
+                <hr>
+            </div>
+        </div>
+        <div class="d-flex justify-content-center">
+            <button type="submit" class="d-flex justify-content-center button">Guardar</button>
+        </div>
+    </form>
+    
+    <div class="mb-3">
+        <a href="{% url 'rol_list_tipo' grupo.id %}" class="float-end button">Regresar</a>  
+    </div>
+    
+</div>
+    {% block extrajs %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script>
+        function addInput() {
+            function add(valor){
+                var input = document.querySelector('#'+valor+'-1').cloneNode(true);
+                var label = document.querySelector('[for="'+valor+'-1').cloneNode(true);
+                switch (valor) {
+                case 'rut':
+                    var col = document.createElement('div');
+                    col.classList.add("col-9");
+                    col.id = 'col-'+valor+'-'+inputValue.value;
+                    
+                    document.querySelector('#row-'+inputValue.value).appendChild(col);
+
+                    input.name = valor+'-'+inputValue.value;
+                    input.id = valor+'-'+inputValue.value;
+                    label.htmlFor = valor+'-'+inputValue.value;
+                    label.id = valor+'-'+inputValue.value;
+
+                    document.querySelector('#col-'+valor+'-'+inputValue.value).appendChild(label);
+                    document.querySelector('#col-'+valor+'-'+inputValue.value).appendChild(input).value="";
+                    break;
+                case 'dv':
+                    var col = document.createElement('div')
+                    col.classList.add("col-3");
+                    col.id = 'col-'+valor+'-'+inputValue.value
+
+                    input.name = valor+'-'+inputValue.value;
+                    input.id = valor+'-'+inputValue.value;
+                    label.htmlFor = valor+'-'+inputValue.value;
+                    label.id = valor+'-'+inputValue.value;
+                    
+                    document.querySelector('#row-'+inputValue.value).appendChild(col)
+                    document.querySelector('#col-'+valor+'-'+inputValue.value).appendChild(label);
+                    document.querySelector('#col-'+valor+'-'+inputValue.value).appendChild(input).value="";
+                    break;
+                default:
+                    input.name = valor+'-'+inputValue.value;
+                    input.id = valor+'-'+inputValue.value;
+                    label.htmlFor = valor+'-'+inputValue.value;
+                    label.id = valor+'-'+inputValue.value;
+
+                    document.querySelector('#formContent').appendChild(label);
+                    document.querySelector('#formContent').appendChild(input).value="";
+                    break;
+                }
+            }
+
+            var inputValue = document.querySelector('#cantidad');
+            inputValue.value = parseInt(inputValue.value) + 1
+
+            add('nombre');
+            add('email');
+            var div = document.createElement('div');
+            div.classList.add("row");
+            div.id = 'row-'+inputValue.value;
+            document.querySelector('#formContent').appendChild(div);
+            add('rut');
+            add('dv');
+            var hr = document.createElement('hr');
+            document.querySelector('#row-'+inputValue.value).appendChild(hr);
+            //inputValue = parseInt(inputValue)+1
+        }
+    
+        function deleteInput() {
+            var inputValue = document.querySelector('#cantidad');
+            
+            if (inputValue.value !=1 ){
+                del('nombre');
+                del('email');
+                del('rut');
+                del('dv');
+                document.querySelector('#row-'+inputValue.value).remove();
+                function del(valor){
+                    for (var i = 0; i < 1; i++) {
+                        document.querySelector('[for="'+valor+'-'+inputValue.value).remove();
+                        document.querySelector('#'+valor+'-'+inputValue.value).remove();
+                    }
+                }
+                inputValue.value = parseInt(inputValue.value) - 1
+            }
+            
+        }
+    </script>
+    </script>
+    {% endblock extrajs %}
+{% endblock %}

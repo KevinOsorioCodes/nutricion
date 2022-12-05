@@ -1,0 +1,32 @@
+{% extends 'registration/base.html' %}
+{% load manifest %}
+{% load static %}
+{% block content %}
+
+
+<div class="col-md-4 login-contents">
+    <h3 id="LMain-title" class="mb-2 text-blue text-center">Bienvenido al módulo de nutrición</h3>
+    {% if messages %}
+    <ul class="messagelist">{% for message in messages %}<li>{{ message }}</li>{% endfor %}</ul>
+    {% endif %}
+    {% if form.non_field_errors %}
+        <p style="color:red">Usuario o contraseña incorrecta, prueba de nuevo.</p>
+    {% endif %}
+    <form action="" method="post">{% csrf_token %}
+        <label for="user" class="form-label">Usuario</label>
+        <div id="div-user-input" class="form-input">
+            <span id="Iuser-login" class="icon"><i class="fa-solid fa-circle-user"></i></span>
+            <input type="text" name="username" id="user-login" class="form-control" placeholder=" Ingrese su usuario"/>
+        </div>
+        <label for="password" class="form-label">Contraseña</label>
+        <div id="div-user-input" class="form-input">
+            <span id="Iuser-login" class="icon"><i class="fa-solid fa-lock"></i></span>
+            <input type="password" name="password" class="form-control" id="user-login" placeholder="Ingrese su contraseña"/>
+        </div>
+        <div id="password-login-buttons" class="d-flex justify-content-center">
+            <a href="{% url 'password_reset_form' %}" class="float-end">¿Olvidó su contraseña?</a>
+            <button type="submit" class="d-flex justify-content-center button">Iniciar Sesión</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

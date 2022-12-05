@@ -1,0 +1,31 @@
+{% extends 'paginaweb/base.html' %}
+{% load manifest %}
+{% load static %}
+{% block content %}
+    {% block extra_css %}
+    <style>
+        .borde{
+            border-radius:10px; 
+            border: 1px black solid;
+            padding: 30px;
+        }
+    </style>
+    {% endblock extra_css %}
+<div class="container-xl col-md-7" onload="myFunction()">
+    <h3 class="mb-2 text-blue text-center">Editar Rol</h3>
+    <hr>
+    <form id="form1" method="POST" action="{% url 'rol_update' Rol.id %}">{% csrf_token %}
+        <label for="nombre" class="form-label col-form-label-sm">Rol:</label>
+        <input type="text" class="form-control form-control-sm" name="nombre" id="nombre" value="{{Rol.name}}" required>
+        <hr>
+        <div class="d-flex justify-content-center">
+            <button type="submit" class="d-flex justify-content-center button">Guardar</button>
+        </div>
+        <div class="mb-3">
+            <a href="{% url 'rol_list' %}" class="float-end button">Regresar</a>  
+        </div>
+    </form>
+</div>
+    {% block extrajs %}
+    {% endblock extrajs %}
+{% endblock %}

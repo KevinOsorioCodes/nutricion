@@ -1,0 +1,61 @@
+{% extends 'paginaweb/base.html' %}
+{% load static %}
+{% block title %}{% endblock %}
+{% block content %}
+  {% block extra_css %}    
+  {% endblock extra_css %}
+  <div class="col-lg-12">
+    <p id="profile_title" class="mb-2 text-blue text-center">Inicio > Mi perfil</p>
+    <h2 class='h2 medium text-blue' id="food-title">Mi perfil</h2>
+    <div id="Profile" class="col-md-6 borde">
+      <div id="Profile_image" class="PI-container-1">
+        <div style="display: flex; flex-direction: column;align-items: center;">
+          <div class="avatar-normal-container">
+            <img src="{{profile.foto_perfil.url}}" alt="avatar">
+          </div>
+          <div class="modal-container" id="modal_container_profile">
+            <div class="modal" id="modal_edit_profile">
+              <h1 id="upload_ni">Subir nueva foto de perfil</h1>
+              <h2 id="upload_ni_subtitle">Tipos de archivos validos: .png, .jpg, .jpeg</h2>
+              <h2 id="upload_ni_subtitle">Tamaño máximo: 5MB.</h2>
+              <a id="delete_image" href="{% url 'quitar_foto' %}" class="button">Eliminar foto</a>
+              <div class="drag-area">
+                <h2 id="Title-drop-box">Arrastra y suelta tu archivo aquí</h2>
+                <span>o</span>
+                <button id="drag-area-button" class="btn btn-primary">Selecciona tu archivo</button>
+              </div>
+              <div id="buttons_ni_modal">
+                <button id="close_ep_modal" class="button">Cancelar</button>
+                <form method="POST" action="{% url 'cambiar_foto' %}" enctype="multipart/form-data">{% csrf_token %}
+                  <input type="file" name="input-file" id="input-file" multiple hidden/>
+                  <button id="upload_ni_button" class="button" type="submit">Subir</button>
+                </form>
+              </div>
+            </div>
+          </div>
+          <button id="open_ep_modal" class="button">Cambiar foto de perfil</button>
+        </div>
+      </div>
+      <div id="Profile_info" class="PI-container-2">
+        <h1 id="Info_title">Información personal</h1>
+        <div class="user-info">
+          <h4>Nombre: </h4>
+          <h4>{{user.first_name}}</h4>
+        </div>
+        <div id="Profile_email" class="user-info">
+          <h4>Correo:</h4>
+          <h4>{{user.email}}</h4>
+        </div>
+        <a id="change-password" href="{% url 'password_change' %}" class="button">Cambiar Contraseña</a>
+      </div>
+      <div class="d-flex justify-content-center">
+        <a class="button" href="{% url 'home' %}">Volver</a>
+      </div>
+    </div>
+    
+  </div>
+  {% block extrajs %}  
+  <script src="{% static 'js/Drag_and_drop.js' %}"></script> 
+  <script src="{% static 'js/modal_edit_profile.js' %}"></script>   
+  {% endblock extrajs %}    
+{% endblock %}

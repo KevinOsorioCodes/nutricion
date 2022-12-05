@@ -1,0 +1,15 @@
+{% extends 'paginaweb/base.html' %}
+{% load manifest %}
+{% load static %}
+{% block content %}
+    {% block extra_css %}  
+    {% endblock extra_css %}
+<div class="col-md-12">
+    <form method="POST" action="{% url 'archivo_save' %}" enctype="multipart/form-data">{% csrf_token %}
+        <input type="file" name="archivo" id="archivo"/>
+        <button id="upload_ni_button" class="button" type="submit">Subir</button>
+    </form>
+</div>
+
+
+{% endblock %}

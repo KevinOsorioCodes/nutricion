@@ -1,0 +1,23 @@
+{% extends "reportes/base.html" %}
+{% block content %}
+<h1 class="text-center">Reporte PDF</h1>
+<br/>
+<h2>Ejemplo de una tabla en el reporte PDF</h2>
+<table class="table">
+    <tr>
+        <td>Columna 1  {{profile.name}}</td>
+        <td>Columna 2  {{profile.email}}</td>
+        <td>Columna 3</td>
+    </tr>
+    <tr>
+        <td>Columna 1</td>
+        <td>Columna 2</td>
+        <td>Columna 3</td>
+    </tr>
+    <tr>
+        <td>Columna 1</td>
+        <td>Columna 2</td>
+        <td>Columna 3</td>
+    </tr>
+</table>
+{% endblock %}

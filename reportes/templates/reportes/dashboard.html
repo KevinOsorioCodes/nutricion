@@ -1,0 +1,75 @@
+{% extends 'paginaweb/base.html' %}
+{% load manifest %}
+{% block title %}{% endblock %}
+{% load static %}
+{% comment %}
+template_name,
+paciente_count,
+satisfaccion_count,
+ficha_hoy,
+coordinador_data,
+docente_data,
+estudiante_data,
+fichas_data,
+solicitud_data,
+paciente_data,
+fichas_count,
+solicitud_count,
+docente_count,
+coordinador_count,
+estudiante_count,
+Excelete,
+Pesima,
+Regular
+{% endcomment %}
+{% block extra_css %}  
+{% endblock extra_css %}
+{% block content %}
+    <div class="col-md-12" id="reports-container">
+        <p id="profile_title" class="mb-2 text-blue text-center">Inicio > Dashboard</p>
+        <h2 class='h2 medium text-blue'>Dashboard</h2>
+        <div id="container-graficos">
+            <div id="encuestas-container2">
+                <div id="dcontainer">
+                    <p>Pacientes en sistema: {{paciente_count}}</p>
+                    <p>Solicitudes ingresadas: {{solicitud_count}}</p>
+                    <p>Fichas ingresadas: {{fichas_count}}</p>
+                    <p>Encuestas de satisfacción respondidas: {{satisfaccion_count}}</p>
+                    <button class="button" id="report-button">Generar reporte</button>
+                </div>
+            </div>
+            <div id="encuestas-container">
+                <h1 id="gtitle">Deportistas atendidos</h1>
+                <div id="grafico">
+                    <p id="des1" hidden>{{Excelente}}</p>
+                    <p id="des2" hidden>{{Regular}}</p>
+                    <p id="des3" hidden>{{Pesima}}</p>
+                    <canvas id="grafico-encuestass"></canvas>
+                </div>
+            </div>
+            <div id="encuestas-container">
+                <h1 id="gtitle">Encuestas de satisfacción</h1>
+                <div id="grafico">
+                    <p id="de1" hidden>{{Excelente}}</p>
+                    <p id="de2" hidden>{{Regular}}</p>
+                    <p id="de3" hidden>{{Pesima}}</p>
+                    <canvas id="grafico-encuestas"></canvas>
+                </div>
+            </div>
+            <div id="encuestas-container">
+                <h1 id="gtitle">Fichas totales</h1>
+                <div id="grafico">
+                    <p id="df1" hidden>{{fichas_count}}</p>
+                    <p id="df2" hidden>{{ficha_hoy}}</p>
+                    <canvas id="grafico-fichas"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% block extrajs %}
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script type="module" src="{% static 'js/1-graphic.js' %}"></script>
+    <script type="module" src="{% static 'js/2-graphic.js' %}"></script>
+    <script type="module" src="{% static 'js/3-graphic.js' %}"></script>
+    {% endblock extrajs %}
+{% endblock content %}

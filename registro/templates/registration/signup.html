@@ -1,0 +1,25 @@
+{% extends 'registration/base.html' %}
+{% load manifest %}
+{% load static %}
+{% block content %}
+<h3 class="mb-2 text-blue text-center">Registrarse</h3>
+<hr>
+<form action="" method="post">{% csrf_token %}
+    <label for="id_username">Nombre de Usuario:</label>
+    <input type="text" name="username" class="form-control" placeholder="Nombre de usuario" required id="id_username">
+    <label for="id_email">Dirección de correo:</label>
+    <input type="email" name="email" class="form-control" placeholder="Dirección de correo@" required id="id_email">
+    <label for="id_password1">Contraseña:</label>
+    <input type="password" name="password1" class="form-control" placeholder="Ingrese su contraseña" required id="id_password1">
+    <label for="id_password2">Confirmar contraseña:</label>
+    <input type="password" name="password2" class="form-control" placeholder="Re ingrese su contraseña" required id="id_password2">
+    <hr>
+    <div class="d-flex justify-content-center">
+        <button type="submit" class="d-flex justify-content-center button">Crear usuario</button>
+    </div>
+</form>
+<div class="mb-3 text-center">
+    <hr>
+    <a href="{% url 'login' %}" class="button">Iniciar sesión</a>
+</div>
+{% endblock %}

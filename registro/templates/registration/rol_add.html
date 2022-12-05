@@ -1,0 +1,90 @@
+{% extends 'paginaweb/base.html' %}
+{% load manifest %}
+{% load static %}
+{% block content %}
+    {% block extra_css %}
+    <style>
+        .borde{
+            border-radius:10px; 
+            border: 1px black solid;
+            padding: 30px;
+        }
+    </style>
+    {% endblock extra_css %}
+<div class="container-xl col-md-7" onload="myFunction()">
+    <h3 class="mb-2 text-blue text-center">Añadir Rol</h3>
+    <hr>
+    <div class="mb-3">
+        <button onclick="addInput()" class="button float-start">Añadir</button>
+        <br>
+    </div>
+    <form id="form1" method="POST">{% csrf_token %}
+        <div id="formContent">
+            {{ form.management_form }}
+            {% for f in form %}
+                {{ f }}
+            {% endfor %}
+        </div>
+        <br>
+        
+        <hr>
+        <div class="d-flex justify-content-center">
+            <button type="submit" class="d-flex justify-content-center button">Guardar</button>
+        </div>
+        <div class="mb-3">
+            <a href="{% url 'rol_list' %}" class="float-end button">Regresar</a>  
+        </div>
+    </form>
+</div>
+    {% block extrajs %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script>
+        window.onload = function() {
+            document.querySelector('[for="id_form-0-name').innerText = 'Rol 1: ';
+            document.querySelector('#formContent').classList.add('row');
+            document.querySelector('#id_form-0-name').classList.add('form-control','form-control-sm','col-8');
+        };    
+
+        function addInput() {
+            
+            function add(valor){
+                var input = document.querySelector('#id_form-0-'+valor).cloneNode(true);
+                var label = document.querySelector('[for="id_form-0-'+valor).cloneNode(true);
+                var button = document.createElement('button')
+                var br = document.createElement("br");
+
+                input.name = 'form-'+forms.value+'-'+valor;
+                input.id = 'id_form-'+forms.value+'-'+valor;
+                label.htmlFor = 'id_form-'+forms.value+'-'+valor;
+                label.id = 'id_form-'+forms.value+'-'+valor;
+                num = parseInt(forms.value)+1
+
+                button.type = 'button';
+                button.name = 'name'
+                button.innerText = 'Borrar';
+                button.classList.add("button","float-end","col-3");
+                button.id = 'id_form-'+forms.value+'-'+valor;
+                button.addEventListener("click", function () {               
+                    console.log(this.id);
+                    for (var i = 0; i < 4; i++) {
+                        document.querySelector('#'+this.id).remove();
+                    }
+                });
+                br.id = 'id_form-'+forms.value+'-'+valor;
+
+                document.querySelector('#formContent').appendChild(label).innerHTML= 'Rol '+(num)+": ";
+                document.querySelector('#formContent').appendChild(input).value="";
+                document.querySelector('#formContent').appendChild(button);
+                document.querySelector('#formContent').appendChild(br);
+            }
+
+            var forms = document.querySelector('#id_form-TOTAL_FORMS');
+            //var p = document.createElement("p");
+            add('name')
+            //document.querySelector('#formContent').appendChild(p);
+            forms.value = parseInt(forms.value) + 1
+            
+        }
+    </script>
+    {% endblock extrajs %}
+{% endblock %}
